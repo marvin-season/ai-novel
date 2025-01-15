@@ -6,7 +6,13 @@ import { providers } from '@/constants/seed'
 export const ModelConfigPanel = () => {
   return (
     <>
-      <ModelSettings providers={providers} currentProvider={providers[0]} onSave={console.log} />
+      <ModelSettings
+        providers={providers}
+        currentProvider={providers[0]}
+        onSave={async (config) => {
+          localStorage.setItem('model-config', JSON.stringify(config))
+        }}
+      />
     </>
   )
 }
