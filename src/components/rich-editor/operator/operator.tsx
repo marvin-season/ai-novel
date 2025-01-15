@@ -1,6 +1,5 @@
-import { Badge, Code2, Highlighter, MessageCircleWarning, Redo2, Save, Trash2, Undo2, Download, Upload } from 'lucide-react'
+import { Code2, Highlighter, Redo2, Save, Undo2, Upload } from 'lucide-react'
 import { Editor, useCurrentEditor } from '@tiptap/react'
-import { NodeSelection } from '@tiptap/pm/state'
 import { toast } from 'sonner'
 
 function handleExport(editor: Editor) {
@@ -41,9 +40,6 @@ export default function Operator({ onSave, onDelete }: { onSave?: () => void; on
   return (
     <>
       <div className="flex p-2 gap-2 justify-end">
-        <div className="cursor-pointer rounded-sm bg-slate-50 p-1" onClick={onSave}>
-          <Save size={12} />
-        </div>
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1 " onClick={() => editor.chain().focus().undo().run()}>
           <Undo2 size={12} />
         </div>
@@ -62,7 +58,7 @@ export default function Operator({ onSave, onDelete }: { onSave?: () => void; on
           <Highlighter size={12} />
         </div>
         <div className="cursor-pointer rounded-sm bg-blue-500 p-1 text-white" onClick={() => handleExport(editor)}>
-          <Download size={12} />
+          <Save size={12} />
         </div>
 
         <input type="file" accept=".md,.txt" style={{ display: 'none' }} id="import-md" onChange={(event) => handleImport(editor, event)} />
