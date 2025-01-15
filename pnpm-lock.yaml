@@ -8,21 +8,12 @@ importers:
 
   .:
     dependencies:
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.47)
-      postcss:
-        specifier: ^8
-        version: 8.4.47
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      tailwindcss:
-        specifier: ^3.4.7
-        version: 3.4.14
     devDependencies:
       '@eslint/js':
         specifier: ^9.13.0
@@ -39,6 +30,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.3
         version: 4.3.3(vite@5.4.10(@types/node@22.8.1))
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.47)
       eslint:
         specifier: ^9.13.0
         version: 9.13.0(jiti@1.21.6)
@@ -51,9 +45,15 @@ importers:
       globals:
         specifier: ^15.11.0
         version: 15.11.0
+      postcss:
+        specifier: ^8
+        version: 8.4.47
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
+      tailwindcss:
+        specifier: ^3.4.7
+        version: 3.4.14
       typescript:
         specifier: ~5.6.2
         version: 5.6.3
