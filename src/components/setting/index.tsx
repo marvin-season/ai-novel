@@ -2,13 +2,18 @@ import { Settings } from 'lucide-react'
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetDescription, SheetTitle } from '@/components/ui/sheet'
 import ModelSettings from './model-settings'
 import { providers } from '@/constants/seed'
+import { useMemo } from 'react'
 
 export const ModelConfigPanel = () => {
+  const currentProvider = useMemo(() => {
+    const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
+    return modelConfig.id ? modelConfig: providers[0]
+  }, [providers])
   return (
     <>
       <ModelSettings
         providers={providers}
-        currentProvider={providers[0]}
+        currentProvider={currentProvider}
         onSave={async (config) => {
           localStorage.setItem('model-config', JSON.stringify(config))
         }}
