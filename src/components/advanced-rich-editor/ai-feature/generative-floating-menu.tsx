@@ -12,27 +12,31 @@ import { CrazySpinner } from '@/components/ui/icon'
 import AiCompleteResultPanel from './ai-completion-result-panel'
 import AICompletionCommands from '@/components/advanced-rich-editor/ai-feature/ai-completion-command'
 import { loadLLMFromSettings } from '@/utils/load-llm'
+import { getPrompt } from '@/utils/prompt-factory'
 export default function GenerativeFloatingMenu({ children }: { children?: ReactNode }) {
   const { editor } = useCurrentEditor()
   const instanceRef = useRef<Instance<Props> | null>(null)
 
   const { completion, complete, setCompletion, isLoading } = useCompletion({
     streamProtocol: 'data',
-    fetch: async (request) => {
+    fetch: async (request, info) => {
+      const {command, context} = info ? JSON.parse(info.body as string || '{}') : {};
+
+      //生成提示词
+      const messages = getPrompt({
+        command,
+        context,
+      });
+
       // 解析请求参数
       const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
       const model = loadLLMFromSettings(modelConfig)
       const config: Parameters<typeof streamText>[0] = {
         model,
-        messages: [
-          {
-            role: 'user',
-            content: 'hi',
-          },
-        ],
+        messages
       }
       const stream = streamText(config)
-    
+
       // 返回 Response 对象
       return stream.toDataStreamResponse()
     },
@@ -79,8 +83,8 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
               <CommandItem
                 onSelect={async () => {
                   const context = editor?.storage.markdown.getMarkdown()
-                  await complete(context, {
-                    body: { command: 'continue' },
+                  await complete('', {
+                    body: { command: 'continue', context: context },
                   })
                   // hideMenu() // Hide the menu after completion
                 }}
