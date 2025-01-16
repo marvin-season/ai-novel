@@ -9,10 +9,10 @@ export function initAzureProvider({
   azure_openai_key?: string;
   azure_openai_endpoint?: string;
 }) {
-  const model = process.env.NEXT_OPEN_MODEL_PREF || open_model_pref;
-  const apiKey = process.env.NEXT_AZURE_OPENAI_KEY || azure_openai_key;
+  const model = process.env.VITE_OPEN_MODEL_PREF || open_model_pref;
+  const apiKey = process.env.VITE_AZURE_OPENAI_KEY || azure_openai_key;
   const baseURL =
-    `${process.env.NEXT_AZURE_OPENAI_ENDPOINT}/openai/deployments/` ||
+    `${process.env.VITE_AZURE_OPENAI_ENDPOINT}/openai/deployments/` ||
     `${azure_openai_endpoint}/openai/deployments/`;
   if (!model) {
     throw new Error("Model is not defined");

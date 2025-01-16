@@ -2,6 +2,7 @@ import { initOllamaProvider } from "./ollama-provider";
 import { initAzureProvider } from "./azure-provider";
 import { initDeepSeek } from "./deepseek-provider";
 import { DynamicParamsType } from "@/components/setting/dynamic-form";
+import { toast } from "sonner";
 export enum ModelProvider {
   Ollama = "ollama",
   Azure = "azure",
@@ -19,9 +20,14 @@ export const loadLLMFromSettings = (
       config[key] = value.value;
     },
   );
-  const model = createModel(provider, config);
-  console.log("model", model);
-  return model;
+  try {
+    const model = createModel(provider, config);
+    console.log("model", model);
+    return model;
+  } catch (error: any) {
+    console.error(error.message)
+    toast.error(error.message)
+  }
 };
 
 export const createModel = (provider: string, config: Record<string, any>) => {
