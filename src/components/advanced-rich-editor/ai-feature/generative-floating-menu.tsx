@@ -20,20 +20,21 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
   const { completion, complete, setCompletion, isLoading } = useCompletion({
     streamProtocol: 'data',
     fetch: async (request, info) => {
-      const {command, context} = info ? JSON.parse(info.body as string || '{}') : {};
+      const { command, context } = info ? JSON.parse((info.body as string) || '{}') : {}
 
       //生成提示词
       const messages = getPrompt({
         command,
         context,
-      });
+      })
 
       // 解析请求参数
       const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
-      const model = loadLLMFromSettings(modelConfig)
+      const model = loadLLMFromSettings(modelConfig)!
+
       const config: Parameters<typeof streamText>[0] = {
         model,
-        messages
+        messages,
       }
       const stream = streamText(config)
 

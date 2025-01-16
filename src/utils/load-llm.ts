@@ -26,7 +26,8 @@ export const loadLLMFromSettings = (
     return model;
   } catch (error: any) {
     console.error(error.message)
-    toast.error(error.message)
+    toast.error('模型配置错误')
+    throw '模型配置错误'
   }
 };
 
