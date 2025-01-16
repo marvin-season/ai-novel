@@ -9,9 +9,9 @@ export function initDeepSeek({
   deepseek_api_key?: string;
   deepseek_baseurl?: string;
 }) {
-  const model = process.env.NEXT_DEEPSEEK_MODEL_ID || deepseek_model_id;
-  const apiKey = process.env.NEXT_DEEPSEEK_API_KEY || deepseek_api_key;
-  const baseURL = process.env.NEXT_DEEPSEEK_BASE_URL || deepseek_baseurl;
+  const model = import.meta.env.VITE_DEEPSEEK_MODEL_ID || deepseek_model_id;
+  const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY || deepseek_api_key;
+  const baseURL = import.meta.env.VITE_DEEPSEEK_BASE_URL || deepseek_baseurl;
   if (!model) {
     throw new Error("Model is not defined");
   }

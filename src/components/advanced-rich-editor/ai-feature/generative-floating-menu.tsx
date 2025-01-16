@@ -18,11 +18,9 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
   const idRef = useRef<string>(Date.now().toString())
 
   const { completion, complete, setCompletion, isLoading } = useCompletion({
-    fetch: (...p) => {
-      debugger
+    fetch: (request) => {
       const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
       const model = loadLLMFromSettings(modelConfig)
-
       const config: Parameters<typeof streamText>[0] = {
         model,
         messages: [
@@ -32,8 +30,7 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
           },
         ],
       }
-      const result = streamText(config)
-      return result.toTextStreamResponse()
+      return streamText(config)
     },
     onFinish: (response) => {
       idRef.current = Date.now().toString()
@@ -48,11 +45,7 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
       toast.error(e.message)
     },
   })
-  // Function to hide the menu
-  const hideMenu = () => {
-    instanceRef.current?.hide()
-  }
-
+  console.log('completion', completion)
   return (
     <EditorFloating
       editor={editor}

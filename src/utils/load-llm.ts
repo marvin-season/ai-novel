@@ -19,14 +19,13 @@ export const loadLLMFromSettings = (
       config[key] = value.value;
     },
   );
-  console.log("user config: ", config);
   const model = createModel(provider, config);
   console.log("model", model);
   return model;
 };
 
 export const createModel = (provider: string, config: Record<string, any>) => {
-  switch (process.env.NEXT_LLM_PROVIDER || provider) {
+  switch (import.meta.env.VITE_LLM_PROVIDER || provider) {
     case ModelProvider.Ollama:
       return initOllamaProvider(config);
     case ModelProvider.Azure:
