@@ -31,7 +31,10 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
       // 解析请求参数
       const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
       const model = loadLLMFromSettings(modelConfig)!
-
+      if (!model) {
+        toast.error('模型配置错误')
+        return new Response();
+      }
       const config: Parameters<typeof streamText>[0] = {
         model,
         messages,

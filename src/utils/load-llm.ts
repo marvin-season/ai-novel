@@ -15,19 +15,21 @@ export const loadLLMFromSettings = (
 ) => {
   const provider = settings.name;
   const config: Record<string, any> = {};
-  Object.entries(settings.dynamic_params as DynamicParamsType).forEach(
-    ([key, value]) => {
-      config[key] = value.value;
-    },
-  );
+  try {
+    Object.entries(settings.dynamic_params as DynamicParamsType).forEach(
+      ([key, value]) => {
+        config[key] = value.value;
+      },
+    );
+  } catch (error) {
+    console.warn(error)
+  }
   try {
     const model = createModel(provider, config);
     console.log("model", model);
     return model;
   } catch (error: any) {
     console.error(error.message)
-    toast.error('模型配置错误')
-    throw '模型配置错误'
   }
 };
 
