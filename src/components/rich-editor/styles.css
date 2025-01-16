@@ -1,4 +1,6 @@
 .tiptap {
+  --hl-background: #2d2d2d;
+  --hl-color: #aaa;
   --gray-4: #ccced2;
   --gray-3: #e5e7eb;
   --gray-2: #f3f4f6;
@@ -12,6 +14,7 @@
 
   pre {
     background: var(--hl-background); /** 颜色取反 **/
+    color: var(--hl-color);
     border-radius: 0.5rem;
     font-family: "JetBrainsMono", monospace;
     margin: 1.5rem 0;
@@ -80,8 +83,9 @@
   /* List styles */
   ul,
   ol {
-    padding: 0 1rem;
-    margin: 1.25rem 1rem 1.25rem 0.4rem;
+    padding: 0 1.5rem;
+    margin: 1.20rem 1rem 1.20rem 0.4rem;
+    list-style: circle;
 
     li p {
       margin-top: 0.25em;
@@ -96,14 +100,15 @@
   h4,
   h5,
   h6 {
-    line-height: 1.1;
-    margin-top: 2.5rem;
+    line-height: 1.0;
+    margin-top: 1.0rem;
     text-wrap: pretty;
+    font-weight: 700;
   }
 
   h1,
   h2 {
-    margin-top: 3.5rem;
+    margin-top: 2.0rem;
     margin-bottom: 1.5rem;
   }
 
