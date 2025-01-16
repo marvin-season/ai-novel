@@ -99,7 +99,7 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
                 onSelect={(value) => {
                   window.open(value, '_blank')
                 }}
-                value="https://github.com/marvin-season/surf-novel"
+                value="https://github.com/marvin-season/ai-novel"
                 className="gap-2 px-4"
               >
                 <Github className="h-4 w-4 text-purple-500" />

@@ -1,6 +1,7 @@
-import { Code2, Highlighter, Redo2, Save, Undo2, Upload } from 'lucide-react'
+import { Code2, FolderOpen, Redo2, Save, Undo2 } from 'lucide-react'
 import { Editor, useCurrentEditor } from '@tiptap/react'
 import { toast } from 'sonner'
+import { Separator } from '@/components/ui/separator'
 
 function handleExport(editor: Editor) {
   // const json = editor.getJSON();
@@ -49,13 +50,14 @@ export default function Operator({ onSave, onDelete }: { onSave?: () => void; on
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1 " onClick={() => editor.chain().focus().setCodeBlock().run()}>
           <Code2 size={12} />
         </div>
+        <Separator className='h-auto mx-2' orientation='vertical'/>
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1" onClick={() => handleExport(editor)}>
           <Save size={12} />
         </div>
 
         <input type="file" accept=".md,.txt" style={{ display: 'none' }} id="import-md" onChange={(event) => handleImport(editor, event)} />
         <label htmlFor="import-md" className="cursor-pointer rounded-sm bg-slate-50 p-1">
-          <Upload size={12} />
+          <FolderOpen size={12} />
         </label>
       </div>
     </>
