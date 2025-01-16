@@ -1,7 +1,12 @@
 import { CoreMessage } from 'ai'
 
 export const getPrompt = ({ prompt, command, context }: { prompt?: string; command: string; context?: string }): CoreMessage[] => {
-  let messages: CoreMessage[] = []
+  let messages: CoreMessage[] = [
+    {
+      role: 'system',
+      content: '请将你的回应限制在不超过500个字符以内，并确保构建完整的句子。你需要直接返回用户结果，不要做额外的解释除非用户特殊要求你解释！',
+    },
+  ]
 
   // 使用 switch 语句替换 ts-pattern
   switch (command) {
@@ -19,77 +24,66 @@ export const getPrompt = ({ prompt, command, context }: { prompt?: string; comma
       break
 
     case 'improve':
-      messages = [
-        {
-          role: 'system',
-          content: '你是一个AI写作助手，你的任务是改善现有文本。' + '请将你的回应限制在不超过200个字符以内，并确保构建完整的句子。',
-        },
-      ]
+      messages.push({
+        role: 'system',
+        content: '你是一个AI写作助手，你的任务是改善现有文本。',
+      })
       break
 
     case 'shorter':
-      messages = [
-        {
-          role: 'system',
-          content: '你是一个AI写作助手，你的任务是缩短现有文本。',
-        },
-        {
-          role: 'user',
-          content: `现有文本: ${prompt}`,
-        },
-      ]
+      messages.push({
+        role: 'system',
+        content: '你是一个AI写作助手，你的任务是缩短现有文本。',
+      })
+      messages.push({
+        role: 'user',
+        content: `现有文本: ${prompt}`,
+      })
       break
 
     case 'longer':
-      messages = [
-        {
-          role: 'system',
-          content: '你是一个AI写作助手，你的任务是延长现有文本。',
-        },
-        {
-          role: 'user',
-          content: `现有文本: ${prompt}`,
-        },
-      ]
+      messages.push({
+        role: 'system',
+        content: '你是一个AI写作助手，你的任务是延长现有文本。',
+      })
+      messages.push({
+        role: 'user',
+        content: `现有文本: ${prompt}`,
+      })
       break
 
     case 'fix':
-      messages = [
-        {
-          role: 'system',
-          content: '你是一个AI写作助手，你的任务是修正现有文本中的语法和拼写错误。' + '请将你的回应限制在不超过200个字符以内，并确保构建完整的句子。',
-        },
-        {
-          role: 'user',
-          content: `现有文本: ${prompt}`,
-        },
-      ]
+      messages.push({
+        role: 'system',
+        content: '你是一个AI写作助手，你的任务是纠正用户输入的语法和拼写错误，然后将正确的文本直接返回给用户',
+      })
+      messages.push({
+        role: 'user',
+        content: `${prompt}`,
+      })
+
       break
 
     case 'zap':
-      messages = [
-        {
-          role: 'system',
-          content: '你是一个AI写作助手，基于用户输入和上下文生成文本。' + '请将你的回应限制在不超过200个字符以内，并确保构建完整的句子。',
-        },
-        {
-          role: 'user',
-          content: `用户输入: ${prompt}. 请参考上下文: ${context} 生成文本`,
-        },
-      ]
+      messages.push({
+        role: 'system',
+        content: '你是一个AI写作助手，基于用户输入和上下文生成文本。',
+      })
+      messages.push({
+        role: 'user',
+        content: `用户输入: ${prompt}. 请参考上下文: ${context} 生成文本`,
+      })
       break
 
     case 'translate':
-      messages = [
-        {
-          role: 'system',
-          content: '你是一个中英翻译助手！请直接返回翻译结果！！',
-        },
-        {
-          role: 'user',
-          content: `请翻译: "${prompt}"!`,
-        },
-      ]
+      messages.push({
+        role: 'system',
+        content: '你是一个中英翻译助手！请根据用户的输入，返回翻译后的结果，翻译尽可能的地道！',
+      })
+      messages.push({
+        role: 'user',
+        content: `"${prompt}"!`,
+      })
       break
 
     default:

@@ -12,6 +12,9 @@ import AICompletionCommands from "./ai-completion-command";
 import AISelectorCommands from "./ai-selector-commands";
 import { useCompletion } from "ai/react";
 import AiCompleteResultPanel from "@/components/advanced-rich-editor/ai-feature/ai-completion-result-panel";
+import { getPrompt } from "@/utils/prompt-factory";
+import { loadLLMFromSettings } from "@/utils/load-llm";
+import { streamText } from "ai";
 
 interface AISelectorProps {
   open: boolean;
@@ -26,8 +29,26 @@ export function AISelector({ onOpenChange }: AISelectorProps) {
   const [inputValue, setInputValue] = useState("");
 
   const { completion, complete, isLoading, setCompletion } = useCompletion({
-    // id: "novel",
-    api: "/api/generate",
+    fetch: async (request, info) => {
+      const {command, context, prompt} = info ? JSON.parse(info.body as string || '{}') : {};
+      //生成提示词
+      const messages = getPrompt({
+        command,
+        context,
+        prompt
+      });
+      // 解析请求参数
+      const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
+      const model = loadLLMFromSettings(modelConfig)
+      const config: Parameters<typeof streamText>[0] = {
+        model,
+        messages
+      }
+      const stream = streamText(config)
+
+      // 返回 Response 对象
+      return stream.toDataStreamResponse()
+    },
     onResponse: (response) => {
       if (response.status === 429) {
         toast.error("You have reached your request limit for the day.");
