@@ -64,6 +64,7 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
         onCreate: (instance) => {
           instanceRef.current = instance
         },
+        duration: [500, 200],
       }}
     >
       {completion && <AiCompleteResultPanel content={completion} />}

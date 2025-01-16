@@ -4,10 +4,10 @@ import ModelSetting from '@/components/setting'
 
 export const Index = () => {
   return (
-    <div className="p-8 relative">
+    <div className="p-8 pt-2 relative ">
       <AdvancedRichEditorProvider
         slotBefore={
-          <div className="flex justify-end items-center border-b mb-4">
+          <div className="sticky top-2 flex justify-end items-center border-b mb-4">
             <div>
               <ModelSetting/>
             </div>

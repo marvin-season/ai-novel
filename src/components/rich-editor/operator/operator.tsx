@@ -49,20 +49,12 @@ export default function Operator({ onSave, onDelete }: { onSave?: () => void; on
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1 " onClick={() => editor.chain().focus().setCodeBlock().run()}>
           <Code2 size={12} />
         </div>
-        <div
-          className="cursor-pointer rounded-sm bg-green-500 p-1 text-white"
-          onClick={() => {
-            editor.chain().focus().toggleHighlight().run()
-          }}
-        >
-          <Highlighter size={12} />
-        </div>
-        <div className="cursor-pointer rounded-sm bg-blue-500 p-1 text-white" onClick={() => handleExport(editor)}>
+        <div className="cursor-pointer rounded-sm bg-slate-50 p-1" onClick={() => handleExport(editor)}>
           <Save size={12} />
         </div>
 
         <input type="file" accept=".md,.txt" style={{ display: 'none' }} id="import-md" onChange={(event) => handleImport(editor, event)} />
-        <label htmlFor="import-md" className="cursor-pointer rounded-sm bg-yellow-500 p-1 text-white">
+        <label htmlFor="import-md" className="cursor-pointer rounded-sm bg-slate-50 p-1">
           <Upload size={12} />
         </label>
       </div>

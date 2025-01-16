@@ -15,7 +15,12 @@ export const ModelConfigPanel = () => {
         providers={providers}
         currentProvider={currentProvider}
         onSave={async (config) => {
-          localStorage.setItem('model-config', JSON.stringify(config))
+          return new Promise(resolve => {
+            setTimeout(() => {
+              localStorage.setItem('model-config', JSON.stringify(config));
+              resolve();
+            }, 500)
+          })
         }}
       />
     </>
