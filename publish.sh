@@ -1,4 +1,4 @@
-# pnpm build
+pnpm build
 #!/bin/bash
 
 # 服务器信息
