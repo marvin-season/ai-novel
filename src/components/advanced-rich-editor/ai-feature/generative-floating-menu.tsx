@@ -15,10 +15,11 @@ import { loadLLMFromSettings } from '@/utils/load-llm'
 export default function GenerativeFloatingMenu({ children }: { children?: ReactNode }) {
   const { editor } = useCurrentEditor()
   const instanceRef = useRef<Instance<Props> | null>(null)
-  const idRef = useRef<string>(Date.now().toString())
 
   const { completion, complete, setCompletion, isLoading } = useCompletion({
-    fetch: (request) => {
+    streamProtocol: 'data',
+    fetch: async (request) => {
+      // 解析请求参数
       const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
       const model = loadLLMFromSettings(modelConfig)
       const config: Parameters<typeof streamText>[0] = {
@@ -30,10 +31,10 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
           },
         ],
       }
-      return streamText(config)
-    },
-    onFinish: (response) => {
-      idRef.current = Date.now().toString()
+      const stream = streamText(config)
+    
+      // 返回 Response 对象
+      return stream.toDataStreamResponse()
     },
     onResponse: (response) => {
       if (response.status === 429) {
@@ -45,7 +46,6 @@ export default function GenerativeFloatingMenu({ children }: { children?: ReactN
       toast.error(e.message)
     },
   })
-  console.log('completion', completion)
   return (
     <EditorFloating
       editor={editor}
