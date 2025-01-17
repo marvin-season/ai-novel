@@ -14,14 +14,14 @@ import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
 
 export const Index = () => {
   return (
-    <div className="relative flex flex-col items-center h-[100dvh] overflow-y-auto pb-12">
+    <div className="relative flex flex-col items-center h-[100dvh] pb-12">
       <AdvancedRichEditorProvider
         editorContainerProps={{
-          className: 'shadow-lg flex-1 rounded-[16px] border-muted border py-4 px-6 w-[80dvw]'
+          className: 'flex-1 rounded-[16px] w-[85dvw] overflow-y-auto'
         }}
         content={content}
         slotBefore={
-          <div className="sticky top-0 left-0 right-0 w-full z-99 bg-background flex justify-end items-center border-b mb-4">
+          <div className="shadow-lg w-full bg-background flex justify-end items-center border-b mb-4">
             <ModelSetting />
             <Operator />
           </div>
