@@ -3,6 +3,7 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetDescription, Sheet
 import ModelSettings from './model-settings'
 import { providers } from '@/constants/seed'
 import { useMemo } from 'react'
+import { IconSize } from '@/constants'
 
 export const ModelConfigPanel = () => {
   const currentProvider = useMemo(() => {
@@ -32,7 +33,7 @@ export default function () {
     <>
       <Sheet>
         <SheetTrigger>
-          <Settings size={12} />
+          <Settings size={IconSize} className='mr-1'/>
         </SheetTrigger>
         <SheetContent side={'left'} className="w-[300px]">
           <SheetHeader>

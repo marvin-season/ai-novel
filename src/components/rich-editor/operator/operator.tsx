@@ -1,7 +1,8 @@
-import { Code2, FolderOpen, Redo2, Save, Undo2 } from 'lucide-react'
+import { Code2, FileInputIcon, Redo2, SaveIcon, Undo2 } from 'lucide-react'
 import { Editor, useCurrentEditor } from '@tiptap/react'
 import { toast } from 'sonner'
-import { Separator } from '@/components/ui/separator'
+import { Separator } from '@/components/ui/separator';
+import { IconSize as size } from '@/constants';
 
 function handleExport(editor: Editor) {
   // const json = editor.getJSON();
@@ -42,22 +43,22 @@ export default function Operator({ onSave, onDelete }: { onSave?: () => void; on
     <>
       <div className="flex p-2 gap-2 justify-end">
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1 " onClick={() => editor.chain().focus().undo().run()}>
-          <Undo2 size={12} />
+          <Undo2 size={size} />
         </div>
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1 " onClick={() => editor.chain().focus().redo().run()}>
-          <Redo2 size={12} />
+          <Redo2 size={size} />
         </div>
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1 " onClick={() => editor.chain().focus().setCodeBlock().run()}>
-          <Code2 size={12} />
+          <Code2 size={size} />
         </div>
         <Separator className='h-auto mx-2' orientation='vertical'/>
         <div className="cursor-pointer rounded-sm bg-slate-50 p-1" onClick={() => handleExport(editor)}>
-          <Save size={12} />
+          <SaveIcon size={size} />
         </div>
 
         <input type="file" accept=".md,.txt" style={{ display: 'none' }} id="import-md" onChange={(event) => handleImport(editor, event)} />
         <label htmlFor="import-md" className="cursor-pointer rounded-sm bg-slate-50 p-1">
-          <FolderOpen size={12} />
+          <FileInputIcon size={size} />
         </label>
       </div>
     </>
