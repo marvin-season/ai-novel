@@ -10,6 +10,7 @@ import GenerativeFloatingMenu from "./ai-feature/generative-floating-menu";
 
 import "./style.css";
 import type { EditorProviderProps } from "@tiptap/react";
+import { TextButtons } from "./selector/text-buttons";
 
 export default function AdvancedRichEditorProvider({
   content,
@@ -26,6 +27,8 @@ export default function AdvancedRichEditorProvider({
         <GenerativeBubbleMenu open={open} onOpenChange={setOpen}>
           <Separator className="h-auto" orientation="vertical" />
           <NodeSelector />
+          <Separator className="h-auto" orientation="vertical" />
+          <TextButtons/>
           <Separator className="h-auto" orientation="vertical" />
           <ColorSelector />
         </GenerativeBubbleMenu>
