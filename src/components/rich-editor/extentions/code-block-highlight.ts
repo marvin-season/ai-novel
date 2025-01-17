@@ -11,10 +11,6 @@ lowlight.register("html", html);
 lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
-lowlight.register("html", html);
-lowlight.register("css", css);
-lowlight.register("js", js);
-lowlight.register("ts", ts);
 
 const CodeBlockHighlight = CodeBlockLowlight.configure({
   lowlight,
