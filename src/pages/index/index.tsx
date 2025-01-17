@@ -21,7 +21,7 @@ export const Index = () => {
         }}
         content={content}
         slotBefore={
-          <div className="shadow-lg w-full bg-background flex justify-end items-center border-b mb-4">
+          <div className="shadow-lg py-2 w-full bg-background flex justify-end items-center border-b mb-4">
             <ModelSetting />
             <Operator />
           </div>
