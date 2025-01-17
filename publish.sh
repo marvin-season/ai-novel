@@ -24,8 +24,8 @@ echo "在服务器上解压并替换 dist 目录..."
 ssh $SERVER "
   cd $TARGET_DIR && \
   rm -rf dist && \
-  unzip -o $ZIP_FILE -d $TARGET_DIR
-  
+  unzip -o $ZIP_FILE -d $TARGET_DIR && \
+  docker restart nginx_ai_novel
 "
 
 # 删除本地的 zip 文件
