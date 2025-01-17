@@ -35,7 +35,7 @@ export default function () {
         <SheetTrigger>
           <Settings size={IconSize} className='mr-1'/>
         </SheetTrigger>
-        <SheetContent side={'left'} className="w-[300px]">
+        <SheetContent side={'top'}>
           <SheetHeader>
             <SheetTitle></SheetTitle>
             <SheetDescription></SheetDescription>

@@ -17,7 +17,7 @@ export const Index = () => {
     <div className="relative flex flex-col items-center h-[100dvh] pb-12">
       <AdvancedRichEditorProvider
         editorContainerProps={{
-          className: 'flex-1 rounded-[16px] w-[85dvw] overflow-y-auto'
+          className: 'flex-1 rounded-[16px] w-[85dvw] overflow-y-auto flex gap-4'
         }}
         content={content}
         slotBefore={

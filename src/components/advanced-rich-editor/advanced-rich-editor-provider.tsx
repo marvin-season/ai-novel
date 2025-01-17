@@ -22,7 +22,7 @@ export default function AdvancedRichEditorProvider({
     <>
       <RichEditorProvider content={content} extensions={extentions} {...props}>
         {children}
-        <GenerativeFloatingMenu></GenerativeFloatingMenu>
+        {/* <GenerativeFloatingMenu></GenerativeFloatingMenu> */}
         <GenerativeBubbleMenu open={open} onOpenChange={setOpen}>
           <Separator className="h-auto" orientation="vertical" />
           <NodeSelector />
