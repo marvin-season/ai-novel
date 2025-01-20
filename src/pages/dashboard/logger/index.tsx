@@ -4,6 +4,7 @@ import { useEffect } from "react";
 export default function Logger() {
   const { count, increment, loadFromIDB } = useStore();
 
+
   // 加载初始状态
   useEffect(() => {
     loadFromIDB();
