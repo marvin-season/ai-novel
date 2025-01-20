@@ -68,3 +68,12 @@
 .navbar .active {
   color: #7b30d5;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Webkit 浏览器 */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE 和 Edge */
+  scrollbar-width: none; /* Firefox */
+}

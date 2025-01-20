@@ -51,10 +51,10 @@ const NovelPage = () => {
       <AdvancedRichEditorProvider
         editorContainerProps={{
           className:
-            "flex-1 overflow-y-auto flex justify-center items-center rounded-[16px] my-8",
+            "flex-1 no-scrollbar overflow-y-auto flex justify-center items-center rounded-[16px] my-8",
         }}
         content={content}
-        slotBefore={
+        slotAfter={
           <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
             <ModelSetting />
             <Operator />
