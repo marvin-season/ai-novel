@@ -15,14 +15,14 @@ import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
 
 const NovelPage = () => {
   return (
-    <div className="relative flex flex-col items-center h-[100dvh] pb-12">
+    <div className="relative flex h-full">
       <AdvancedRichEditorProvider
         editorContainerProps={{
           className: "flex-1 rounded-[16px] w-[85dvw] overflow-y-auto flex",
         }}
         content={content}
         slotBefore={
-          <div className="shadow-lg py-2 w-full bg-background flex justify-end items-center border-b mb-4">
+          <div className="shadow-lg p-2 bg-background flex flex-col gap-2 items-start border-b">
             <ModelSetting />
             <Operator />
           </div>
