@@ -1,19 +1,13 @@
-import { Index } from "@/pages/index";
 import { Toaster } from "sonner";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "@/pages/dashboard";
+import { RouterProvider } from "react-router-dom";
+import router from "@/router";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Toaster />
-      <Routes>
-        <Route path="/" element={<Dashboard />}>
-          <Route index element={<Index />} />
-          <Route path="logger" element={<Index />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <RouterProvider router={router}></RouterProvider>
+    </>
   );
 }
 
