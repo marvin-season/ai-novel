@@ -65,7 +65,7 @@ export default function Operator({}: {
       >
         <Code2 size={size} />
       </div>
-      <Separator className="h-auto mx-2" orientation="vertical" />
+      <Separator className="w-full" orientation="horizontal" />
       <div
         className="cursor-pointer rounded-sm bg-slate-50 "
         onClick={() => handleExport(editor)}

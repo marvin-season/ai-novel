@@ -55,7 +55,7 @@ const NovelPage = () => {
         }}
         content={content}
         slotBefore={
-          <div className="shadow-lg p-2 px-3.5 bg-background flex flex-col gap-2 items-start border-b">
+          <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
             <ModelSetting />
             <Operator />
           </div>
