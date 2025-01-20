@@ -1,7 +1,8 @@
 import { RouteObject } from "react-router-dom";
 import Dashboard from "@/pages/dashboard";
 import { lazy, Suspense } from "react";
-import { Loader2 } from "lucide-react";
+import { Loading } from "@/components/loading";
+
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
 const Logger = lazy(() => import("@/pages/dashboard/logger"));
@@ -14,7 +15,7 @@ const routes: RouteObject[] = [
       {
         index: true,
         element: (
-          <Suspense fallback={<Loader2 />}>
+          <Suspense fallback={<Loading />}>
             <NovelPage />
           </Suspense>
         ),
@@ -22,7 +23,7 @@ const routes: RouteObject[] = [
       {
         path: "logger",
         element: (
-          <Suspense fallback={<Loader2 />}>
+          <Suspense fallback={<Loading />}>
             <Logger />
           </Suspense>
         ),
