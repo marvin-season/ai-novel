@@ -1,6 +1,7 @@
-import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
-import Operator from '@/components/rich-editor/operator/operator'
-import ModelSetting from '@/components/setting'
+import { AdvancedRichEditorProvider } from "@/components/advanced-rich-editor";
+import Operator from "@/components/rich-editor/operator/operator.tsx";
+import ModelSetting from "@/components/setting";
+
 const content = `
 \`\`\`js
 import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
@@ -10,14 +11,14 @@ import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
 ## AdvancedRichEditorProvider
 + GenerativeFloatingMenu
 + GenerativeBubbleMenu
-`
+`;
 
-export const Index = () => {
+const NovelPage = () => {
   return (
     <div className="relative flex flex-col items-center h-[100dvh] pb-12">
       <AdvancedRichEditorProvider
         editorContainerProps={{
-          className: 'flex-1 rounded-[16px] w-[85dvw] overflow-y-auto flex'
+          className: "flex-1 rounded-[16px] w-[85dvw] overflow-y-auto flex",
         }}
         content={content}
         slotBefore={
@@ -28,5 +29,7 @@ export const Index = () => {
         }
       />
     </div>
-  )
-}
+  );
+};
+
+export default NovelPage;

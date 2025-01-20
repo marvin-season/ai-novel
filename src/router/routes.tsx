@@ -1,22 +1,33 @@
 import { RouteObject } from "react-router-dom";
 import Dashboard from "@/pages/dashboard";
-import { Index } from "@/pages/index";
-import Logger from "@/pages/dashboard/logger";
+import { lazy, Suspense } from "react";
+import { Loader2 } from "lucide-react";
+
+const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
+const Logger = lazy(() => import("@/pages/dashboard/logger"));
 
 const routes: RouteObject[] = [
   {
     path: "/",
+    Component: Dashboard,
     children: [
       {
         index: true,
-        element: <Index />,
+        element: (
+          <Suspense fallback={<Loader2 />}>
+            <NovelPage />
+          </Suspense>
+        ),
       },
       {
-        path: 'logger',
-        element: <Logger />,
+        path: "logger",
+        element: (
+          <Suspense fallback={<Loader2 />}>
+            <Logger />
+          </Suspense>
+        ),
       },
     ],
-    Component: Dashboard,
   },
 ];
 
