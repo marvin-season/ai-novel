@@ -27,7 +27,7 @@ Zustand + IndexedDB
 •	使用 idb 将状态数据持久化到 IndexedDB。
 •	应用初始化时从 IndexedDB 加载状态并恢复到 Zustand。
 
-
+## 喝杯咖啡 ☕️ ☀️
 <!-- markdownlint-disable MD033 -->
 <img src='./public/reward/alipay.png' width='250' alt=''/>
 <!-- markdownlint-enable MD033 -->
