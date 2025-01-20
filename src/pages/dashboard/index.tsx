@@ -2,10 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 
 export default function Dashboard() {
   return (
-    <div className={'flex flex-col h-[100dvh]'}>
+    <div className={'h-[100dvh]'}>
       <nav
         className={
-          "navbar sticky top-0 bg-white shadow-lg backdrop-blur px-8 py-6 flex gap-4 font-bold text-lg border border-muted"
+          "navbar h-[60px] sticky top-0 bg-white shadow-lg backdrop-blur px-6 flex items-center gap-4 font-bold text-lg border border-muted"
         }
       >
         <NavLink to={"/"} className="navbar-brand">
@@ -15,7 +15,7 @@ export default function Dashboard() {
           日志
         </NavLink>
       </nav>
-      <div className={'flex-1'}>
+      <div className={`h-[calc(100dvh-60px)]`}>
         <Outlet />
       </div>
     </div>
