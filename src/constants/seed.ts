@@ -66,7 +66,7 @@ export const providers = [
         label: 'deepseek_baseurl',
         type: 'string',
         default: '',
-        value: '',
+        value: 'https://api.deepseek.com',
         placeholder: '请输入 deepseek_baseurl',
       },
       deepseek_api_key: {
@@ -80,7 +80,7 @@ export const providers = [
         label: 'deepseek_model_id',
         type: 'select',
         default: '',
-        value: '',
+        value: 'deepseek-chat',
         placeholder: '请输入部署的模型名称',
         options: [{ name: 'deepseek-chat', value: 'deepseek-chat' }],
       },
