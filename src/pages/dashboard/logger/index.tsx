@@ -1,15 +1,22 @@
-import { useNavigate } from "react-router-dom";
+import useStore from "@/store";
+import { useEffect } from "react";
 
 export default function Logger() {
-  const navigate = useNavigate();
+  const { count, increment, loadFromIDB } = useStore();
+
+  // 加载初始状态
+  useEffect(() => {
+    loadFromIDB();
+  }, [loadFromIDB]);
   return (
     <div>
+      {count}
       <button
         onClick={() => {
-          navigate("/", { replace: true });
+          increment()
         }}
       >
-        logger
+        increment
       </button>
     </div>
   );
