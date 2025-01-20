@@ -28,7 +28,7 @@ export default function AdvancedRichEditorProvider({
           <Separator className="h-auto" orientation="vertical" />
           <NodeSelector />
           <Separator className="h-auto" orientation="vertical" />
-          <TextButtons/>
+          <TextButtons />
           <Separator className="h-auto" orientation="vertical" />
           <ColorSelector />
         </GenerativeBubbleMenu>

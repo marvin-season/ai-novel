@@ -50,7 +50,8 @@ const NovelPage = () => {
     <div className="h-full relative flex">
       <AdvancedRichEditorProvider
         editorContainerProps={{
-          className: "flex-1 overflow-y-auto flex justify-center items-center rounded-[16px] my-8",
+          className:
+            "flex-1 overflow-y-auto flex justify-center items-center rounded-[16px] my-8",
         }}
         content={content}
         slotBefore={

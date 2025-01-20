@@ -3,7 +3,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Badge from "../extentions/badge";
 import { Markdown } from "tiptap-markdown";
 import CodeBlockHighlight from "../extentions/code-block-highlight";
-import Underline from '@tiptap/extension-underline'
+import Underline from "@tiptap/extension-underline";
 export default function useExtentions() {
   return [
     StarterKit,

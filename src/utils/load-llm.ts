@@ -22,14 +22,14 @@ export const loadLLMFromSettings = (
       },
     );
   } catch (error) {
-    console.warn(error)
+    console.warn(error);
   }
   try {
     const model = createModel(provider, config);
     console.log("model", model);
     return model;
   } catch (error: any) {
-    console.error(error.message)
+    console.error(error.message);
   }
 };
 

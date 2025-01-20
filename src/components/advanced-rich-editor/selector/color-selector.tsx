@@ -91,9 +91,7 @@ const HIGHLIGHT_COLORS: BubbleColorMenuItem[] = [
   },
 ];
 
-interface ColorSelectorProps {
-
-}
+interface ColorSelectorProps {}
 
 export const ColorSelector = ({}: ColorSelectorProps) => {
   const { editor } = useCurrentEditor();

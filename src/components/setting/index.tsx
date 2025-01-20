@@ -1,41 +1,50 @@
-import { Settings } from 'lucide-react'
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetDescription, SheetTitle } from '@/components/ui/sheet'
-import ModelSettings from './model-settings'
-import { providers } from '@/constants/seed'
-import { useMemo } from 'react'
-import { IconSize } from '@/constants'
+import { Settings } from "lucide-react";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetDescription,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import ModelSettings from "./model-settings";
+import { providers } from "@/constants/seed";
+import { useMemo } from "react";
+import { IconSize } from "@/constants";
 
 export const ModelConfigPanel = () => {
   const currentProvider = useMemo(() => {
-    const modelConfig = JSON.parse(localStorage.getItem('model-config') || '{}')
-    return modelConfig.id ? modelConfig: providers[0]
-  }, [providers])
+    const modelConfig = JSON.parse(
+      localStorage.getItem("model-config") || "{}",
+    );
+    return modelConfig.id ? modelConfig : providers[0];
+  }, [providers]);
   return (
     <>
       <ModelSettings
         providers={providers}
         currentProvider={currentProvider}
         onSave={async (config) => {
-          return new Promise(resolve => {
+          return new Promise((resolve) => {
             setTimeout(() => {
-              localStorage.setItem('model-config', JSON.stringify(config));
+              localStorage.setItem("model-config", JSON.stringify(config));
               resolve();
-            }, 500)
-          })
+            }, 500);
+          });
         }}
       />
     </>
-  )
-}
+  );
+};
 
 export default function () {
   return (
     <>
       <Sheet>
         <SheetTrigger>
-          <Settings size={IconSize} className='mr-1'/>
+          <Settings size={IconSize} className="mr-1" />
         </SheetTrigger>
-        <SheetContent side={'top'}>
+        <SheetContent side={"top"}>
           <SheetHeader>
             <SheetTitle></SheetTitle>
             <SheetDescription></SheetDescription>
@@ -44,5 +53,5 @@ export default function () {
         </SheetContent>
       </Sheet>
     </>
-  )
+  );
 }
