@@ -11,6 +11,7 @@ import GenerativeFloatingMenu from "./ai-feature/generative-floating-menu";
 import "./style.css";
 import type { EditorProviderProps } from "@tiptap/react";
 import { TextButtons } from "./selector/text-buttons";
+import AutoSave from "@/components/advanced-rich-editor/auto-save.tsx";
 
 export default function AdvancedRichEditorProvider({
   content,
@@ -32,6 +33,7 @@ export default function AdvancedRichEditorProvider({
           <Separator className="h-auto" orientation="vertical" />
           <ColorSelector />
         </GenerativeBubbleMenu>
+        <AutoSave/>
       </RichEditorProvider>
     </>
   );

@@ -1,51 +1,10 @@
 import { AdvancedRichEditorProvider } from "@/components/advanced-rich-editor";
 import Operator from "@/components/rich-editor/operator/operator.tsx";
 import ModelSetting from "@/components/setting";
-
-const content = `
-\`\`\`js
-import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
-
-\`\`\`
-
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
-\`\`\`
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
-
-\`\`\`
-
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-\`\`\`
-
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-import { AdvancedRichEditorProvider } from '@/components/advanced-rich-editor'
-
-\`\`\`
-
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-
-## AdvancedRichEditorProvider
-+ GenerativeFloatingMenu
-+ GenerativeBubbleMenu
-`;
+import { useAppSelector } from "@/store";
 
 const NovelPage = () => {
+  const content  = useAppSelector(state => state.novel.contentMD)
   return (
     <div className="h-full relative flex">
       <AdvancedRichEditorProvider
