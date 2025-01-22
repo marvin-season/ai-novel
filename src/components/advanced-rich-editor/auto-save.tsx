@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useCurrentEditor } from "@tiptap/react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useDebounce } from "ahooks";
 import { updateContentMD } from "@/store/slice/NoveSlice.ts";
+import { AppDispatch } from "@/store";
 
-export default function AutoSave() {
-  const dispatch = useDispatch();
+export default memo(function AutoSave() {
+  console.log("AutoSave");
+  const dispatch = useDispatch<AppDispatch>();
   const { editor } = useCurrentEditor();
 
   const handleUpdate = useDebounce(() => {
@@ -24,4 +26,4 @@ export default function AutoSave() {
   }, []);
 
   return <></>;
-}
+}, () => true);

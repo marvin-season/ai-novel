@@ -4,7 +4,8 @@ import ModelSetting from "@/components/setting";
 import { useAppSelector } from "@/store";
 
 const NovelPage = () => {
-  const content  = useAppSelector(state => state.novel.contentMD)
+  const content  = useAppSelector(state => state.novel.contentMD);
+
   return (
     <div className="h-full relative flex">
       <AdvancedRichEditorProvider
