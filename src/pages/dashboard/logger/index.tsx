@@ -1,11 +1,16 @@
+import { useDispatch } from "react-redux";
+import { updateContentMD } from "@/store/slice/NoveSlice.ts";
+import { useAppSelector } from "@/store";
+
 export default function Logger() {
-  const { count, increment, loadFromIDB } = {}
+  const contentMD = useAppSelector((state) => state.novel.contentMD);
+  const dispatch = useDispatch();
   return (
     <div>
-      {count}
+      {contentMD}
       <button
         onClick={() => {
-          increment()
+          dispatch(updateContentMD("contentMD"));
         }}
       >
         increment
