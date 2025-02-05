@@ -14,6 +14,8 @@ export default function PDFtoTXT() {
         const file = event.target.files?.[0];
         if (!file) return;
 
+        setText(''); // clear
+
         const reader = new FileReader();
         reader.onload = async (e) => {
             if (!e.target?.result) return;
