@@ -14,6 +14,9 @@ export default function Dashboard() {
         <NavLink to={"logger"} className="navbar-brand">
           日志
         </NavLink>
+        <NavLink to={"pdf-to-txt"} className="navbar-brand">
+          PDF2TXT
+        </NavLink>
       </nav>
       <div className={`h-[calc(100dvh-60px)]`}>
         <Outlet />

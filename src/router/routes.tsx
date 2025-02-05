@@ -6,6 +6,7 @@ import { Loading } from "@/components/loading";
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
 const Logger = lazy(() => import("@/pages/dashboard/logger"));
+const PDF2TXT = lazy(() => import("@/pages/dashboard/pdf-to-txt"));
 
 const routes: RouteObject[] = [
   {
@@ -25,6 +26,14 @@ const routes: RouteObject[] = [
         element: (
           <Suspense fallback={<Loading />}>
             <Logger />
+          </Suspense>
+        ),
+      },
+      {
+        path: "pdf-to-txt",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <PDF2TXT />
           </Suspense>
         ),
       },
