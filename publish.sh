@@ -1,4 +1,4 @@
-# pnpm build
+pnpm build
 #!/bin/bash
 
 # 服务器信息
@@ -30,7 +30,7 @@ ssh $SERVER "
   cd $TARGET_DIR && \
   rm -rf dist && \
   unzip -o $ZIP_FILE -d $TARGET_DIR && \
-  docker restart nginx_ai_novel
+  docker-compose up -d --force-recreate --build
 "
 
 # 删除本地的 zip 文件
