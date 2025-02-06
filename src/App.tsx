@@ -11,8 +11,9 @@ function App() {
   const { toast } = useToast();
   useEffect(() => {
     toast({
-      title: "Scheduled: Catch up",
-      description: "Friday, February 10, 2023 at 5:57 PM",
+      
+      title: "公告：",
+      description: "本站点的数据均存储在您的客户端，不会窃取您的数据",
     })
   }, [])
   return (
