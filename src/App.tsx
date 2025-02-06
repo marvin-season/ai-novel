@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster as ToasterSonner } from 'sonner'
-console.log("app")
+
 function App() {
   const { toast } = useToast();
   useEffect(() => {
