@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function Dashboard() {
   return (
@@ -11,12 +12,17 @@ export default function Dashboard() {
         <NavLink to={"/"} className="navbar-brand">
           首页
         </NavLink>
-        <NavLink to={"logger"} className="navbar-brand">
+        <div onClick={() => {
+          toast.success('别点我')
+        }} className="navbar-brand text-blue-600 cursor-pointer">
+          叽里咕噜
+        </div>
+        {/* <NavLink to={"logger"} className="navbar-brand">
           日志
         </NavLink>
         <NavLink to={"pdf-to-txt"} className="navbar-brand">
           PDF2TXT
-        </NavLink>
+        </NavLink> */}
       </nav>
       <div className={`h-[calc(100dvh-60px)]`}>
         <Outlet />
