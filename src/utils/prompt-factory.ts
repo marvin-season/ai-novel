@@ -13,7 +13,7 @@ export const getPrompt = ({
     {
       role: "system",
       content:
-        "请将你的回应限制在不超过500个字符以内，并确保构建完整的句子。你需要直接返回用户结果，不要做额外的解释除非用户特殊要求你解释！",
+        "请将你的回应限制在不超过300个字符以内，并确保构建完整的句子。你需要直接返回用户结果，不要做额外的解释除非用户特殊要求你解释！",
     },
   ];
 
@@ -27,7 +27,7 @@ export const getPrompt = ({
 
       messages.push({
         role: "user",
-        content: `现有文本：${context}`,
+        content: `现有文本：${prompt}`,
       });
 
       break;
