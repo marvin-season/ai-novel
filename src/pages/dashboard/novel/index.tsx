@@ -1,6 +1,5 @@
 import { AdvancedRichEditorProvider } from "@/components/advanced-rich-editor";
 import Operator from "@/components/rich-editor/operator/operator.tsx";
-import ModelSetting from "@/components/setting";
 import { useAppSelector } from "@/store";
 
 const NovelPage = () => {
@@ -16,7 +15,6 @@ const NovelPage = () => {
         content={content}
         slotAfter={
           <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
-            <ModelSetting />
             <Operator />
           </div>
         }

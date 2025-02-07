@@ -1,22 +1,21 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { toast } from "sonner";
+import ModelSetting from "@/components/setting";
 
 export default function Dashboard() {
   return (
     <div className={"h-[100dvh]"}>
       <nav
         className={
-          "navbar h-[60px] sticky top-0 bg-white shadow-lg backdrop-blur px-6 flex items-center gap-4 font-bold text-lg border border-muted"
+          "navbar h-[60px] sticky top-0 bg-white shadow-lg backdrop-blur px-6 flex justify-between font-bold text-lg border border-muted"
         }
       >
-        <NavLink to={"/"} className="navbar-brand">
-          首页
-        </NavLink>
-        <div onClick={() => {
-          toast.success('别点我')
-        }} className="navbar-brand text-blue-600 cursor-pointer">
-          叽里咕噜
+        <div className="flex items-center gap-4 ">
+          <NavLink to={"/"} className="navbar-brand">
+            首页
+          </NavLink>
         </div>
+        <ModelSetting />
         {/* <NavLink to={"logger"} className="navbar-brand">
           日志
         </NavLink>

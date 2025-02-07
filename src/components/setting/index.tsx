@@ -42,7 +42,10 @@ export default function () {
     <>
       <Sheet>
         <SheetTrigger>
-          <Settings size={IconSize} className="mr-1" />
+          <div className="mr-1 text-sm text-blue-500 flex gap-2 items-center"> 
+            <Settings size={IconSize}  />
+            设置
+          </div>
         </SheetTrigger>
         <SheetContent side={"top"}>
           <SheetHeader>
