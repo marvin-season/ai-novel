@@ -21,6 +21,7 @@ export const providers = [
         options: [
           { name: "qwen2:7b", value: "qwen2:7b" },
           { name: "llama3.1", value: "llama3.1" },
+          { name: "deepseek-r1", value: "deepseek-r1" },
         ],
       },
     },
