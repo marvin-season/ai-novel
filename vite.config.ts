@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     visualizer({  // 打包分析插件
-      open: true,
+      open: false,
       filename: 'bundle-analysis.html',
       gzipSize: true,
       brotliSize: true
@@ -44,7 +44,15 @@ export default defineConfig({
             if (id.includes('echarts')) {
               return 'vendor-echarts'
             }
-            
+            if (id.includes('tiptap')) {
+              return 'vendor-tiptap'
+            }
+            if (id.includes('pdfjs-dist')) {
+              return 'pdfjs-dist'
+            }
+            if (id.includes('highlight')) {
+              return 'highlight'
+            }
             // 其他依赖按模块名称分组
             const match = id.match(/node_modules\/((?:@[^/]+\/)?[^/]+)/)
             return match ? `vendor-${match[1]}` : 'vendor-other'
