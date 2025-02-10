@@ -64,8 +64,12 @@ export default function Content() {
     return <>
         {
             headings.map(heading => {
-                // return <div className={`text-[${11 - heading.level}px]`}>{heading.text}</div>
-                return <div className={`${headingClassMap[heading.level]} px-2 py-0.5 cursor-pointer font-serif select-none`}>{heading.text}</div>
+                return <div className={`${headingClassMap[heading.level]} px-2 py-0.5 cursor-pointer font-serif select-none`} onClick={() => {
+                    console.log(heading)
+                    const targets = document.querySelectorAll(`h${heading.level}[type="tiptap-heading"]`);
+                    const index = headings.filter(h => h.level === heading.level).indexOf(heading)
+                    targets[index].scrollIntoView({ behavior: 'smooth' })
+                }}>{heading.text}</div>
             })
         }
     </>
