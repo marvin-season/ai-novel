@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import { debounce } from 'lodash-es'
 
 type Heading = {
-    level: number,
+    level: 1 | 2 | 3,
     text?: string
 }
-
+const headingClassMap: Record<1 | 2 | 3, string> = {
+    1: 'text-[18px] text-gray-800 ml-0 leading-[2.0]',
+    2: 'text-[17px] text-gray-700 ml-4 leading-[1.2]',
+    3: 'text-[16px] text-gray-600 ml-8 leading-[0.8]',
+};
 const extractHeadings = (node: JSONContent, level = 0) => {
     const headings: Heading[] = [];
     if (node.type === 'heading' && node.attrs) {
@@ -29,10 +33,10 @@ const caculateHeadings = debounce((editor: Editor, setHeadings) => {
     const content = editor.getJSON();
 
     const headings = extractHeadings(content)
-    console.log(content, headings)
     setHeadings(headings)
 }, 500, {
-    
+    leading: true,
+    trailing: true
 });
 
 export default function Content() {
@@ -44,6 +48,7 @@ export default function Content() {
     }
 
     useEffect(() => {
+        caculateHeadings(editor, setHeadings);
         editor.on('update', () => {
             caculateHeadings(editor, setHeadings);
         })
@@ -59,7 +64,8 @@ export default function Content() {
     return <>
         {
             headings.map(heading => {
-                return <div className={``}>{heading.text}</div>
+                // return <div className={`text-[${11 - heading.level}px]`}>{heading.text}</div>
+                return <div className={`${headingClassMap[heading.level]} px-2 py-0.5 cursor-pointer font-serif select-none`}>{heading.text}</div>
             })
         }
     </>

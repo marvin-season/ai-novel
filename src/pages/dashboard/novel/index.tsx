@@ -20,7 +20,7 @@ const NovelPage = () => {
           </div>
         }
         slotBefore={
-          <div>
+          <div className="p-4 bg-slate-50 overflow-y-auto">
             <Content/>
           </div>
         }
