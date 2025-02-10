@@ -14,9 +14,9 @@ export default function Dashboard() {
           <NavLink to={"/"} className="navbar-brand">
             首页
           </NavLink>
-          <NavLink to={"/canvas"} className="navbar-brand">
+          {/* <NavLink to={"/canvas"} className="navbar-brand">
             画布
-          </NavLink>
+          </NavLink> */}
         </div>
         <ModelSetting />
         {/* <NavLink to={"logger"} className="navbar-brand">

@@ -5,9 +5,9 @@ import { Loading } from "@/components/loading";
 
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
-const Logger = lazy(() => import("@/pages/dashboard/logger"));
-const PDF2TXT = lazy(() => import("@/pages/dashboard/pdf-to-txt"));
-const Canvas = lazy(() => import("@/pages/dashboard/canvas"));
+// const Logger = lazy(() => import("@/pages/dashboard/logger"));
+// const PDF2TXT = lazy(() => import("@/pages/dashboard/pdf-to-txt"));
+// const Canvas = lazy(() => import("@/pages/dashboard/canvas"));
 
 const routes: RouteObject[] = [
   {
@@ -22,30 +22,30 @@ const routes: RouteObject[] = [
           </Suspense>
         ),
       },
-      {
-        path: "logger",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Logger />
-          </Suspense>
-        ),
-      },
-      {
-        path: "canvas",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Canvas />
-          </Suspense>
-        ),
-      },
-      {
-        path: "pdf-to-txt",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <PDF2TXT />
-          </Suspense>
-        ),
-      },
+      // {
+      //   path: "logger",
+      //   element: (
+      //     <Suspense fallback={<Loading />}>
+      //       <Logger />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "canvas",
+      //   element: (
+      //     <Suspense fallback={<Loading />}>
+      //       <Canvas />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "pdf-to-txt",
+      //   element: (
+      //     <Suspense fallback={<Loading />}>
+      //       <PDF2TXT />
+      //     </Suspense>
+      //   ),
+      // },
     ],
   },
 ];
