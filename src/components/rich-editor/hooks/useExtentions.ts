@@ -4,7 +4,6 @@ import Badge from "../extentions/badge";
 import { Markdown } from "tiptap-markdown";
 import CodeBlockHighlight from "../extentions/code-block-highlight";
 import Underline from "@tiptap/extension-underline";
-import { nanoid } from "@reduxjs/toolkit";
 export default function useExtentions() {
   return [
     StarterKit.configure({
