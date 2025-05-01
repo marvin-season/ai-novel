@@ -3,10 +3,17 @@ import StarterKit from "@tiptap/starter-kit";
 import Badge from "../extentions/badge";
 import { Markdown } from "tiptap-markdown";
 import CodeBlockHighlight from "../extentions/code-block-highlight";
-import Underline from '@tiptap/extension-underline'
+import Underline from "@tiptap/extension-underline";
+import { nanoid } from "@reduxjs/toolkit";
 export default function useExtentions() {
   return [
-    StarterKit,
+    StarterKit.configure({
+      heading: {
+        HTMLAttributes: {
+          type: "tiptap-heading",
+        },
+      }
+    }),
     Badge,
     Markdown,
     Underline,

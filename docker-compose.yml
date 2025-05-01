@@ -3,7 +3,7 @@ services:
     container_name: nginx_ai_novel
     image: nginx:latest
     ports:
-      - "80:80"  # 暴露 80 端口
+      - "8888:80"  # 暴露此ng容器的端口为：8888
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf  # 挂载 Nginx 配置文件
       - ./dist/:/usr/share/nginx/html

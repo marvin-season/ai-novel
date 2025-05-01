@@ -84,7 +84,7 @@
   ul,
   ol {
     padding: 0 1.5rem;
-    margin: 1.20rem 1rem 1.20rem 0.4rem;
+    margin: 1.2rem 1rem 1.2rem 0.4rem;
     list-style: circle;
 
     li p {
@@ -100,15 +100,15 @@
   h4,
   h5,
   h6 {
-    line-height: 1.0;
-    margin-top: 1.0rem;
+    line-height: 1;
+    margin-top: 1rem;
     text-wrap: pretty;
     font-weight: 700;
   }
 
   h1,
   h2 {
-    margin-top: 2.0rem;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
   }
 
