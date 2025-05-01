@@ -19,6 +19,24 @@ export const getPrompt = ({
 
   // 使用 switch 语句替换 ts-pattern
   switch (command) {
+    case "eng":
+      messages.push({
+        role: 'system',
+        content: `You are an English expert! You need to explain English words entered by users in simpler English.`,
+      },
+        {
+          role: 'system',
+          content: `Your response should refer to the following format:
+                1.${prompt}
+                2.A simple explanation of ${prompt}
+                3. An example sentence of ${prompt}`,
+        },
+        {
+          role: 'user',
+          content: `用户是输入的单词：${prompt}`,
+        }
+      );
+      break;
     case "continue":
       messages.push({
         role: "system",

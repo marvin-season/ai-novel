@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react';
 import "tippy.js/animations/shift-away.css"; // 过渡动画
@@ -8,10 +6,10 @@ import { getPrompt } from '@/utils/prompt-factory';
 import { streamText } from 'ai';
 import { useCompletion } from '@ai-sdk/react';
 import { Loader } from 'lucide-react';
-import AiCompleteResultPanel from '@/components/advanced-rich-editor/ai-feature/ai-completion-result-panel';
+import RichViewer from '@/components/rich-viewer';
 const doc = `React is a JavaScript library developed and maintained by Meta (formerly Facebook) and a community of developers. Its primary purpose is to facilitate building user interfaces through a component-based architecture. React employs a virtual DOM for efficient rendering and updates, allowing developers to create interactive UIs that update predictably.`
 
-export default function Page() {
+export default function ReadingENG() {
 
     const [tippy, setTippy] = useState<{
         text: string;
@@ -71,7 +69,11 @@ const Answer = ({ text }: { text: string }) => {
                 prompt,
             })
             // 解析请求参数
-            const model = loadLLMFromSettings({ provider: 'deepseek' })
+            // 解析请求参数
+            const modelConfig = JSON.parse(
+                localStorage.getItem("model-config") || "{}",
+            );
+            const model = loadLLMFromSettings(modelConfig)
             if (!model) {
                 return new Response()
             }
@@ -94,7 +96,11 @@ const Answer = ({ text }: { text: string }) => {
     })
     useEffect(() => {
         console.log('text', text)
-        text && complete(text)
+        text && complete(text, {
+            body: {
+                command: 'eng'
+            }
+        })
     }, [text]);
     return (
         <>
@@ -102,8 +108,8 @@ const Answer = ({ text }: { text: string }) => {
                 completion.length === 0 ? <div className='flex items-center gap-2'>
                     <Loader size={16} />
                     <span className='text-sm'>loading...</span>
-                </div> : <AiCompleteResultPanel content={completion}>
-                </AiCompleteResultPanel>
+                </div> : <RichViewer content={completion}>
+                </RichViewer>
             }
 
         </>
