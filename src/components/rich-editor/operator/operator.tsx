@@ -11,8 +11,6 @@ import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import { IconSize as size } from "@/constants";
 import { useDebounce } from "ahooks";
-import { updateContentMD } from "@/store/slice/NoveSlice.ts";
-import { useDispatch } from "react-redux";
 
 function handleExport(editor: Editor) {
   // const json = editor.getJSON();
@@ -53,11 +51,9 @@ export default function Operator() {
   if (!editor) {
     return null;
   }
-  const dispatch = useDispatch();
 
   const handleUpdate = useDebounce(() => {
     const markdown = editor?.storage.markdown.getMarkdown();
-    dispatch(updateContentMD(markdown));
   }, {});
 
   return (

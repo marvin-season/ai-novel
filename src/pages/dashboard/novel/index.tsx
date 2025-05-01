@@ -1,10 +1,9 @@
 import { AdvancedRichEditorProvider } from "@/components/advanced-rich-editor";
 import Content from "@/components/rich-editor/content";
 import Operator from "@/components/rich-editor/operator/operator.tsx";
-import { useAppSelector } from "@/store";
 
 const NovelPage = () => {
-  const content  = useAppSelector(state => state.novel.contentMD);
+  const content  = '';
 
   return (
     <div className="h-full relative flex">
