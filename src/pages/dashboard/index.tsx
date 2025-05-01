@@ -14,17 +14,11 @@ export default function Dashboard() {
           <NavLink to={"/"} className="navbar-brand">
             首页
           </NavLink>
-          {/* <NavLink to={"/canvas"} className="navbar-brand">
-            画布
-          </NavLink> */}
+          <NavLink to={"reading"} className="navbar-brand">
+            Reading
+          </NavLink>
         </div>
         <ModelSetting />
-        {/* <NavLink to={"logger"} className="navbar-brand">
-          日志
-        </NavLink>
-        <NavLink to={"pdf-to-txt"} className="navbar-brand">
-          PDF2TXT
-        </NavLink> */}
       </nav>
       <div className={`h-[calc(100dvh-60px)]`}>
         <Outlet />
