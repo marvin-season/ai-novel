@@ -14,6 +14,7 @@
     "publish": "./publish.sh"
   },
   "dependencies": {
+    "immer": "^10.1.1",
     "@ai-sdk/azure": "^1.0.13",
     "@ai-sdk/deepseek": "^0.0.1",
     "@ai-sdk/react": "^1.2.11",
@@ -54,7 +55,8 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
-    "tiptap-markdown": "^0.8.10"
+    "tiptap-markdown": "^0.8.10",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

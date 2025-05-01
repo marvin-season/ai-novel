@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Tippy from '@tippyjs/react';
 import "tippy.js/animations/shift-away.css"; // 过渡动画
 import { loadLLMFromSettings } from '@/utils/load-llm';
@@ -7,10 +7,10 @@ import { streamText } from 'ai';
 import { useCompletion } from '@ai-sdk/react';
 import { Loader } from 'lucide-react';
 import RichViewer from '@/components/rich-viewer';
-const doc = `React is a JavaScript library developed and maintained by Meta (formerly Facebook) and a community of developers. Its primary purpose is to facilitate building user interfaces through a component-based architecture. React employs a virtual DOM for efficient rendering and updates, allowing developers to create interactive UIs that update predictably.`
+import { useDocStore } from '@/store';
 
 export default function ReadingENG() {
-
+    const content = useDocStore(state => state.content);
     const [tippy, setTippy] = useState<{
         text: string;
         target: HTMLElement | null;
@@ -22,7 +22,7 @@ export default function ReadingENG() {
     return (
         <div className=''>
             {
-                doc.split(/([.!\s])/).map((line, index) => (
+                content.split(/([.!\s])/).map((line, index) => (
                     <span
                         onClick={(e) => {
                             setTippy({

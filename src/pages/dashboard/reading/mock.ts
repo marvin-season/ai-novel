@@ -1,0 +1,1 @@
+export const doc = `React is a JavaScript library developed and maintained by Meta (formerly Facebook) and a community of developers. Its primary purpose is to facilitate building user interfaces through a component-based architecture. React employs a virtual DOM for efficient rendering and updates, allowing developers to create interactive UIs that update predictably.`
