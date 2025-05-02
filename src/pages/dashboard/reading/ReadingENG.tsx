@@ -8,6 +8,7 @@ import { useCompletion } from '@ai-sdk/react';
 import { Loader } from 'lucide-react';
 import RichViewer from '@/components/rich-viewer';
 import { useDocStore } from '@/store';
+import completionFetch from '@/utils/completion-fetch';
 
 export default function ReadingENG() {
     const content = useDocStore(state => state.content);
@@ -60,32 +61,7 @@ export default function ReadingENG() {
 
 const Answer = ({ text }: { text: string }) => {
     const { completion, complete, isLoading, setCompletion } = useCompletion({
-        fetch: async (request, info) => {
-            const { command, context, prompt } = info ? JSON.parse((info.body as string) || '{}') : {}
-            //生成提示词
-            const messages = getPrompt({
-                command,
-                context,
-                prompt,
-            })
-            // 解析请求参数
-            // 解析请求参数
-            const modelConfig = JSON.parse(
-                localStorage.getItem("model-config") || "{}",
-            );
-            const model = loadLLMFromSettings(modelConfig)
-            if (!model) {
-                return new Response()
-            }
-            const config: Parameters<typeof streamText>[0] = {
-                model,
-                messages,
-            }
-            const stream = streamText(config)
-
-            // 返回 Response 对象
-            return stream.toDataStreamResponse()
-        },
+        fetch: completionFetch,
         onResponse: (response) => {
             if (response.status === 429) {
                 return

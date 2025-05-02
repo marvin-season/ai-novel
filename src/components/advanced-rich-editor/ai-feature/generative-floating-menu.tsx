@@ -1,6 +1,5 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { EditorFloating } from "../editor-floating";
-import { streamText } from "ai";
 import {
   Command,
   CommandGroup,
@@ -16,8 +15,7 @@ import { Magic } from "@/components/ui/icon";
 import { CrazySpinner } from "@/components/ui/icon";
 import AiCompleteResultPanel from "./ai-completion-result-panel";
 import AICompletionCommands from "@/components/advanced-rich-editor/ai-feature/ai-completion-command";
-import { loadLLMFromSettings } from "@/utils/load-llm";
-import { getPrompt } from "@/utils/prompt-factory";
+import completionFetch from "@/utils/completion-fetch";
 export default function GenerativeFloatingMenu({
   children,
 }: {
@@ -28,35 +26,7 @@ export default function GenerativeFloatingMenu({
 
   const { completion, complete, setCompletion, isLoading } = useCompletion({
     streamProtocol: "data",
-    fetch: async (request, info) => {
-      const { command, context } = info
-        ? JSON.parse((info.body as string) || "{}")
-        : {};
-
-      //生成提示词
-      const messages = getPrompt({
-        command,
-        context,
-      });
-
-      // 解析请求参数
-      const modelConfig = JSON.parse(
-        localStorage.getItem("model-config") || "{}",
-      );
-      const model = loadLLMFromSettings(modelConfig)!;
-      if (!model) {
-        toast.error("模型配置错误");
-        return new Response();
-      }
-      const config: Parameters<typeof streamText>[0] = {
-        model,
-        messages,
-      };
-      const stream = streamText(config);
-
-      // 返回 Response 对象
-      return stream.toDataStreamResponse();
-    },
+    fetch: completionFetch,
     onResponse: (response) => {
       if (response.status === 429) {
         toast.error("You have reached your request limit for the day.");
