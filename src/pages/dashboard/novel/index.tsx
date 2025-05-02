@@ -10,7 +10,7 @@ const NovelPage = () => {
       <AdvancedRichEditorProvider
         editorContainerProps={{
           className:
-            "flex-1 no-scrollbar overflow-y-auto flex items-center rounded-[16px] my-8",
+            "flex-1 no-scrollbar overflow-y-auto flex items-center rounded-[16px] mb-8 mt-2 p-4",
         }}
         content={content}
         slotAfter={
