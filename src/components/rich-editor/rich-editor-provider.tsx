@@ -19,7 +19,7 @@ export default function RichEditorProvider({
         editorProps={{
           ...editorProps,
           attributes: {
-            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none w-full max-w-full h-full p-4`,
+            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none w-full max-w-full h-full`,
           },
         }}
         content={content}

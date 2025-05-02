@@ -1,13 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import Tippy from '@tippyjs/react';
 import "tippy.js/animations/shift-away.css"; // 过渡动画
-import { loadLLMFromSettings } from '@/utils/load-llm';
-import { getPrompt } from '@/utils/prompt-factory';
-import { streamText } from 'ai';
-import { useCompletion } from '@ai-sdk/react';
-import { Loader } from 'lucide-react';
-import RichViewer from '@/components/rich-viewer';
 import { useDocStore } from '@/store';
+import Completion from './completion';
+import { command } from 'node_modules/@tiptap/core/dist/commands';
+import { useCompletion } from '@ai-sdk/react';
 import completionFetch from '@/utils/completion-fetch';
 
 export default function ReadingENG() {
@@ -20,6 +17,17 @@ export default function ReadingENG() {
         target: null,
     });
 
+    const { complete, ...completionProps } = useCompletion({
+        fetch: completionFetch,
+        onResponse: (response) => {
+            if (response.status === 429) {
+                return
+            }
+        },
+        onError: (e) => {
+        },
+    })
+
     return (
         <div className=''>
             {
@@ -30,6 +38,7 @@ export default function ReadingENG() {
                                 text: line,
                                 target: e.currentTarget,
                             })
+                            completionProps.setCompletion(' ')
                         }}
                         key={index}
                         className="flex-1 pb-1 leading-8 cursor-pointer border-b-1 border-transparent hover:border-blue-500 hover:text-blue-500 transition-all duration-300"
@@ -41,7 +50,13 @@ export default function ReadingENG() {
             }
             <Tippy
                 className={`backdrop-blur leading-6 px-4 py-2 rounded-lg shadow-lg`}
-                content={<Answer text={tippy.text} />}
+                content={<Completion {...completionProps} onCommand={command => {
+                    tippy.text && complete(tippy.text, {
+                        body: {
+                            command
+                        }
+                    })
+                }} />}
                 visible={!!tippy.target}
                 reference={(tippy.target)}
                 onClickOutside={() => {
@@ -55,39 +70,5 @@ export default function ReadingENG() {
                 interactive
             ></Tippy>
         </div>
-    )
-}
-
-
-const Answer = ({ text }: { text: string }) => {
-    const { completion, complete, isLoading, setCompletion } = useCompletion({
-        fetch: completionFetch,
-        onResponse: (response) => {
-            if (response.status === 429) {
-                return
-            }
-        },
-        onError: (e) => {
-        },
-    })
-    useEffect(() => {
-        console.log('text', text)
-        text && complete(text, {
-            body: {
-                command: 'eng'
-            }
-        })
-    }, [text]);
-    return (
-        <>
-            {
-                completion.length === 0 ? <div className='flex items-center gap-2'>
-                    <Loader size={16} />
-                    <span className='text-sm'>loading...</span>
-                </div> : <RichViewer content={completion}>
-                </RichViewer>
-            }
-
-        </>
     )
 }
