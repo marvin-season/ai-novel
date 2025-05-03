@@ -6,13 +6,9 @@ import {
   Upload,
 } from "lucide-react";
 import { Editor, useCurrentEditor } from "@tiptap/react";
-import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import { IconSizeMiddle as size } from "@/constants";
-import { useDebounce } from "ahooks";
 import { handleExport, handleImport } from "@/utils";
-
-
 
 export default function Operator() {
   const { editor } = useCurrentEditor();
@@ -21,9 +17,6 @@ export default function Operator() {
     return null;
   }
 
-  const handleUpdate = useDebounce(() => {
-    const markdown = editor?.storage.markdown.getMarkdown();
-  }, {});
 
   return (
     <>
@@ -49,12 +42,6 @@ export default function Operator() {
       </label>
       <Separator className="w-full" orientation="horizontal" />
 
-      {/* <div
-        className="cursor-pointer rounded-sm bg-slate-50  "
-        onClick={handleUpdate}
-      >
-        <SaveAll size={size} />
-      </div> */}
       <div
         className="cursor-pointer rounded-sm bg-slate-50  "
         onClick={() => editor.chain().focus().undo().run()}
@@ -73,7 +60,6 @@ export default function Operator() {
       >
         <Code2 size={size} />
       </div>
-
     </>
   );
 }

@@ -11,12 +11,12 @@ import {
 } from "@/components/advanced-rich-editor";
 import { Separator } from "@/components/ui/separator";
 import Operator from "@/components/rich-editor/operator/operator";
+import NovelBubbleMenu from "./novel-bubble-menu";
 export default function NovelEditor({
   content,
   children,
   ...props
 }: EditorProviderProps) {
-  const [open, setOpen] = useState(false);
   const extentions = useAdvancedExtentions();
   const { editor } = useCurrentEditor();
   useEffect(() => {
@@ -43,15 +43,7 @@ export default function NovelEditor({
         {...props}
       >
         {children}
-        {/* <GenerativeFloatingMenu></GenerativeFloatingMenu> */}
-        <GenerativeBubbleMenu open={open} onOpenChange={setOpen}>
-          <Separator className="h-auto" orientation="vertical" />
-          <NodeSelector />
-          <Separator className="h-auto" orientation="vertical" />
-          <TextButtons />
-          <Separator className="h-auto" orientation="vertical" />
-          <ColorSelector />
-        </GenerativeBubbleMenu>
+        <NovelBubbleMenu />
       </RichEditorProvider>
     </>
   );
