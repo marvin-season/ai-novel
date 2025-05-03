@@ -20,6 +20,16 @@ export const getPrompt = ({
 
   // 使用 switch 语句替换 ts-pattern
   switch (command) {
+    case AICommand.chat:
+      messages.push({
+        role: "system",
+        content: `你是一个AI对话手，用户的对话上下文:  ${context}`,
+      });
+      messages.push({
+        role: "user",
+        content: `${prompt}`,
+      });
+      break;
     case AICommand.explain:
       messages.push({
         role: 'system',

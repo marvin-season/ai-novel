@@ -36,7 +36,8 @@ export interface AgentState {
   messages: IMessageProps[];
 
   /** Actions */
-  updateMessage: (message: IMessageProps) => void;
+  appendMessage: (message: IMessageProps) => void;
+  replaceMessage: (message: IMessageProps) => void;
   initializeMessages: (messages: IMessageProps[]) => void;
 
   /** Selectors */
@@ -54,7 +55,19 @@ export const useAgentStore = create<AgentState>()(
       messages: [],
 
       // Actions
-      updateMessage: (message: IMessageProps) => {
+      replaceMessage(message) {
+        set((state) => {
+          const index = state.messages.findIndex(
+            (item) => item.id === message.id,
+          );
+          if (index > -1) {
+            state.messages[index] = message;
+          } else {
+            state.messages.push(message);
+          }
+        });
+      },
+      appendMessage: (message: IMessageProps) => {
         set((state) => {
           const existedIndex = state.messages.findIndex(
             (item) => item.id === message.id,

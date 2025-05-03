@@ -9,6 +9,7 @@ export enum AICommand {
     translate = "translate",
     continue = "continue",
     zap = "zap",
+    chat = "chat",
 }
 
 export type AICommandsType = {

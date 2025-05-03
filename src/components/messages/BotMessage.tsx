@@ -1,34 +1,27 @@
-import  { memo } from "react";
-import { MessageBadge } from "./MessageBadge";
+import React, { memo } from "react";
+import { Bubble } from '@ant-design/x';
 import { BaseMessageProps } from "@/types";
+import { BotIcon } from "lucide-react";
+import { IconSizeSmall } from "@/constants";
+/**
+ * Props for the UserMessage component
+ */
+interface UserMessageProps extends BaseMessageProps { }
 
 /**
- * Props for the BotMessage component
+ * User message UI component
  */
-interface BotMessageProps extends BaseMessageProps {}
-
-/**
- * Bot message UI component
- */
-export const BotMessage = memo(({ message }: BotMessageProps) => {
+export const BotMessage = memo(({ message }: UserMessageProps) => {
   return (
-    <div className="bg-gray-100 rounded-md p-2 flex gap-2 items-center">
-      <MessageBadge label="bot" />
-      <MessageBadge
-        label={message.id}
-        bgColor="bg-blue-300"
-        textColor="text-white"
-      />
-      <MessageBadge
-        label={message.content}
-        bgColor="bg-green-500"
-        textColor="text-white"
-      />
-      {message.timestamp && (
-        <span className="text-xs text-gray-600">
-          {new Date(message.timestamp).toLocaleTimeString()}
-        </span>
-      )}
-    </div>
+    <Bubble
+      placement="start"
+      content={message.content}
+      avatar={{
+        icon: <BotIcon size={IconSizeSmall} />, style: {
+          color: '#3cb7fa',
+          backgroundColor: '#d4f4f5',
+        }
+      }} />
+
   );
 });
