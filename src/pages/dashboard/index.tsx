@@ -1,21 +1,21 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { toast } from "sonner";
 import ModelSetting from "@/components/setting";
+import { BookOpenText, PencilLineIcon } from "lucide-react";
 
 export default function Dashboard() {
   return (
     <div className={"h-[100dvh]"}>
       <nav
         className={
-          "navbar h-[60px] sticky top-0 bg-white shadow-lg backdrop-blur px-6 flex justify-between font-bold text-lg border border-muted"
+          "navbar h-[60px] bg-white px-6 flex justify-between border-b"
         }
       >
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center gap-8">
           <NavLink to={"/"} className="navbar-brand">
-            首页
+            <PencilLineIcon size={20} />
           </NavLink>
           <NavLink to={"reading"} className="navbar-brand">
-            Reading
+            <BookOpenText size={20}/>
           </NavLink>
         </div>
         <ModelSetting />
