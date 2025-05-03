@@ -29,11 +29,11 @@ export default function NovelEditor({
     <>
       <RichEditorProvider
         content={content}
-        // slotAfter={
-        //   <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
-        //     <Operator />
-        //   </div>
-        // }
+        slotBefore={
+          <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
+            <Operator />
+          </div>
+        }
 
         extensions={extentions}
         editorContainerProps={{
