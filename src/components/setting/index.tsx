@@ -10,7 +10,7 @@ import {
 import ModelSettings from "./model-settings";
 import { providers } from "@/constants/seed";
 import { useMemo } from "react";
-import { IconSize } from "@/constants";
+import { IconSizeMiddle } from "@/constants";
 
 export const ModelConfigPanel = () => {
   const currentProvider = useMemo(() => {
@@ -42,8 +42,8 @@ export default function () {
     <>
       <Sheet>
         <SheetTrigger>
-          <div className="text-sm text-blue-500"> 
-            <Settings size={IconSize}  />
+          <div className=""> 
+            <Settings size={IconSizeMiddle}  />
           </div>
         </SheetTrigger>
         <SheetContent side={"top"}>

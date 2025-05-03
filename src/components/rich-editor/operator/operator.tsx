@@ -9,7 +9,7 @@ import {
 import { Editor, useCurrentEditor } from "@tiptap/react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
-import { IconSize as size } from "@/constants";
+import { IconSizeMiddle as size } from "@/constants";
 import { useDebounce } from "ahooks";
 
 function handleExport(editor: Editor) {
