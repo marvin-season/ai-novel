@@ -23,7 +23,7 @@ export const getPrompt = ({
     case AICommand.chat:
       messages.push({
         role: "system",
-        content: `你是一个AI对话手，用户的对话上下文:  ${context}`,
+        content: `你是一个AI对话手，用户的对话上下文:  ${JSON.stringify(context)}`,
       });
       messages.push({
         role: "user",

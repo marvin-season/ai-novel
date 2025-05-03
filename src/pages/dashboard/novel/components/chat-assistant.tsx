@@ -36,7 +36,7 @@ export default function ChatAssistant() {
     }
   }, [completion]);
   return (
-    <div className="flex flex-col h-full p-4">
+    <div className="flex flex-col h-full p-4 w-[480px]">
       <MessageList />
       <Sender
         loading={isLoading}
