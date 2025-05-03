@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { RichEditorProvider } from "@/components/rich-editor";
 
 import { EditorProviderProps, useCurrentEditor } from "@tiptap/react";
-import GenerativeBubbleMenu from "@/components/advanced-rich-editor/ai-feature/generative-bubble-menu";
-import useAdvancedExtentions from "@/components/advanced-rich-editor/hooks/useExtentions";
-import { ColorSelector } from "@/components/advanced-rich-editor/selector/color-selector";
-import { NodeSelector } from "@/components/advanced-rich-editor/selector/node-selector";
-import { TextButtons } from "@/components/advanced-rich-editor/selector/text-buttons";
+
+import {
+  TextButtons,
+  ColorSelector,
+  NodeSelector,
+  GenerativeBubbleMenu, useAdvancedExtentions
+} from "@/components/advanced-rich-editor";
 import { Separator } from "@/components/ui/separator";
+import Operator from "@/components/rich-editor/operator/operator";
 export default function NovelEditor({
   content,
   children,
@@ -24,7 +27,21 @@ export default function NovelEditor({
   }, []);
   return (
     <>
-      <RichEditorProvider content={content} extensions={extentions} {...props}>
+      <RichEditorProvider
+        content={content}
+        slotAfter={
+          <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
+            <Operator />
+          </div>
+        }
+
+        extensions={extentions}
+        editorContainerProps={{
+          className:
+            "flex-1 no-scrollbar overflow-y-auto flex items-center rounded-[16px] mb-8 mt-2 p-4",
+        }}
+        {...props}
+      >
         {children}
         {/* <GenerativeFloatingMenu></GenerativeFloatingMenu> */}
         <GenerativeBubbleMenu open={open} onOpenChange={setOpen}>
