@@ -1,11 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import FloatHandle from "./novel/components/float-handle";
 
 export default function Dashboard() {
   return (
     <div className={"h-[100dvh]"}>
-      <div className={`h-dvh`}>
-        <Outlet />
-      </div>
+      <FloatHandle />
+      <Outlet />
     </div>
   );
 }
