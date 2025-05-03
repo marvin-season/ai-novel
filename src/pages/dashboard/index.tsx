@@ -1,26 +1,18 @@
 import { NavLink, Outlet } from "react-router-dom";
-import ModelSetting from "@/components/setting";
-import { BookOpenText, PencilLineIcon } from "lucide-react";
+import { BookOpenText, Menu, PencilLineIcon, ShieldCloseIcon, XIcon } from "lucide-react";
+import Navbar from "./components/navbar";
+import Dropdown from "./components/dropdown";
 
 export default function Dashboard() {
   return (
     <div className={"h-[100dvh]"}>
-      <nav
-        className={
-          "navbar h-[60px] bg-white px-6 flex justify-between border-b"
-        }
-      >
-        <div className="flex items-center gap-8">
-          <NavLink to={"/"} className="navbar-brand">
-            <PencilLineIcon size={20} />
-          </NavLink>
-          <NavLink to={"reading"} className="navbar-brand">
-            <BookOpenText size={20}/>
-          </NavLink>
-        </div>
-        <ModelSetting />
-      </nav>
-      <div className={`h-[calc(100dvh-60px)]`}>
+      <div className="fixed right-2 top-2 z-10 p-2">
+        <Dropdown>
+          <Navbar />
+        </Dropdown>
+      </div>
+
+      <div className={`h-dvh`}>
         <Outlet />
       </div>
     </div>

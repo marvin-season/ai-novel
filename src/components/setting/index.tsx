@@ -42,9 +42,8 @@ export default function () {
     <>
       <Sheet>
         <SheetTrigger>
-          <div className="mr-1 text-sm text-blue-500 flex gap-2 items-center"> 
+          <div className="text-sm text-blue-500"> 
             <Settings size={IconSize}  />
-            设置
           </div>
         </SheetTrigger>
         <SheetContent side={"top"}>
