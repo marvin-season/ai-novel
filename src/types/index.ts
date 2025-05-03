@@ -1,0 +1,20 @@
+import { type ReactNode } from "react"
+
+export enum AICommand {
+    improve = "improve",
+    fix = "fix",
+    shorter = "shorter",
+    longer = "longer",
+    explain = "explain",
+    translate = "translate",
+    continue = "continue",
+    zap = "zap",
+}
+
+export type AICommandsType = {
+    value: AICommand,
+    label: string,
+    icon: (p: any) => ReactNode
+}
+
+

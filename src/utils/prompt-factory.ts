@@ -1,3 +1,4 @@
+import { AICommand } from "@/types";
 import { CoreMessage } from "ai";
 
 export const getPrompt = ({
@@ -6,7 +7,7 @@ export const getPrompt = ({
   context,
 }: {
   prompt?: string;
-  command: string;
+  command: AICommand;
   context?: string;
 }): CoreMessage[] => {
   let messages: CoreMessage[] = [
@@ -19,7 +20,7 @@ export const getPrompt = ({
 
   // 使用 switch 语句替换 ts-pattern
   switch (command) {
-    case "eng":
+    case AICommand.explain:
       messages.push({
         role: 'system',
         content: `You are an English expert! You need to explain English words entered by users in simpler English.`,
@@ -37,7 +38,7 @@ export const getPrompt = ({
         }
       );
       break;
-    case "continue":
+    case AICommand.continue:
       messages.push({
         role: "system",
         content: `你是一个AI写作的续写高手, 你的任务是对用户提供的现有文本进行续写。`,
@@ -50,14 +51,14 @@ export const getPrompt = ({
 
       break;
 
-    case "improve":
+    case AICommand.improve:
       messages.push({
         role: "system",
         content: "你是一个AI写作助手，你的任务是改善现有文本。",
       });
       break;
 
-    case "shorter":
+    case AICommand.shorter:
       messages.push({
         role: "system",
         content: "你是一个AI写作助手，你的任务是缩短现有文本。",
@@ -68,7 +69,7 @@ export const getPrompt = ({
       });
       break;
 
-    case "longer":
+    case AICommand.longer:
       messages.push({
         role: "system",
         content: "你是一个AI写作助手，你的任务是延长现有文本。",
@@ -79,7 +80,7 @@ export const getPrompt = ({
       });
       break;
 
-    case "fix":
+    case AICommand.fix:
       messages.push({
         role: "system",
         content:
@@ -92,7 +93,7 @@ export const getPrompt = ({
 
       break;
 
-    case "zap":
+    case AICommand.zap:
       messages.push({
         role: "system",
         content: "你是一个AI写作助手，基于用户输入和上下文生成文本。",
@@ -103,7 +104,7 @@ export const getPrompt = ({
       });
       break;
 
-    case "translate":
+    case AICommand.translate:
       messages.push({
         role: "system",
         content:
