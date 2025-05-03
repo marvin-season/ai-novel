@@ -100,7 +100,6 @@ const AISelectorCommands = ({ onSelect }: AISelectorCommandsProps) => {
                 const text = editor.storage.markdown.serializer.serialize(
                   slice.content,
                 );
-                debugger
                 onSelect(text, value);
               }}
               className="flex gap-2 px-4"

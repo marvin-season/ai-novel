@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import { RichEditorProvider } from "@/components/rich-editor";
-import GenerativeBubbleMenu from "./ai-feature/generative-bubble-menu";
-import { Separator } from "@/components/ui/separator";
 
-import { ColorSelector } from "./selector/color-selector";
-import { NodeSelector } from "./selector/node-selector";
-import useAdvancedExtentions from "./hooks/useExtentions";
-
-import "./style.css";
 import { EditorProviderProps, useCurrentEditor } from "@tiptap/react";
-import { TextButtons } from "./selector/text-buttons";
-
-export default function AdvancedRichEditorProvider({
+import GenerativeBubbleMenu from "@/components/advanced-rich-editor/ai-feature/generative-bubble-menu";
+import useAdvancedExtentions from "@/components/advanced-rich-editor/hooks/useExtentions";
+import { ColorSelector } from "@/components/advanced-rich-editor/selector/color-selector";
+import { NodeSelector } from "@/components/advanced-rich-editor/selector/node-selector";
+import { TextButtons } from "@/components/advanced-rich-editor/selector/text-buttons";
+import { Separator } from "@/components/ui/separator";
+export default function NovelEditor({
   content,
   children,
   ...props
@@ -38,7 +35,6 @@ export default function AdvancedRichEditorProvider({
           <Separator className="h-auto" orientation="vertical" />
           <ColorSelector />
         </GenerativeBubbleMenu>
-        {/*<AutoSave/>*/}
       </RichEditorProvider>
     </>
   );

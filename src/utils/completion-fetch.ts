@@ -5,7 +5,6 @@ import { UseCompletionOptions } from '@ai-sdk/react';
 import { toast } from "sonner";
 const completionFetch: UseCompletionOptions['fetch'] = async (request, info) => {
     const { command, context, prompt } = info ? JSON.parse((info.body as string) || '{}') : {}
-    debugger
     //生成提示词
     const messages = getPrompt({
         command,

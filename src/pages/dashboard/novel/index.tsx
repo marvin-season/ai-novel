@@ -1,13 +1,13 @@
-import { AdvancedRichEditorProvider } from "@/components/advanced-rich-editor";
 import Content from "@/components/rich-editor/content";
 import Operator from "@/components/rich-editor/operator/operator.tsx";
+import NovelEditor from "./components/novel-editor";
 
 const NovelPage = () => {
   const content  = '';
 
   return (
     <div className="h-full relative flex">
-      <AdvancedRichEditorProvider
+      <NovelEditor
         editorContainerProps={{
           className:
             "flex-1 no-scrollbar overflow-y-auto flex items-center rounded-[16px] mb-8 mt-2 p-4",
