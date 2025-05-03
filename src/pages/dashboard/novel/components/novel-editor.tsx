@@ -10,7 +10,7 @@ import {
   GenerativeBubbleMenu, useAdvancedExtentions
 } from "@/components/advanced-rich-editor";
 import { Separator } from "@/components/ui/separator";
-import Operator from "@/components/rich-editor/operator/operator";
+import Operator from "@/pages/dashboard/novel/components/operator";
 import NovelBubbleMenu from "./novel-bubble-menu";
 export default function NovelEditor({
   content,

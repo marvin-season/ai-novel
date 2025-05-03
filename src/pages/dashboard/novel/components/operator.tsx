@@ -1,14 +1,18 @@
 import {
   Code2,
   Download,
+  Paintbrush,
   Redo2,
   Undo2,
   Upload,
 } from "lucide-react";
-import { Editor, useCurrentEditor } from "@tiptap/react";
+import { useCurrentEditor } from "@tiptap/react";
 import { Separator } from "@/components/ui/separator";
-import { IconSizeMiddle as size } from "@/constants";
+import { IconSizeSmall, IconSizeSmall as size } from "@/constants";
 import { handleExport, handleImport } from "@/utils";
+import { ColorSelector, NodeSelector, TextButtons } from "@/components/advanced-rich-editor";
+import Tippy from "@tippyjs/react";
+
 
 export default function Operator() {
   const { editor } = useCurrentEditor();
@@ -60,6 +64,17 @@ export default function Operator() {
       >
         <Code2 size={size} />
       </div>
+      <Separator className="w-full" orientation="horizontal" />
+
+      <Tippy
+        content={<div className="transition-all bg-white bg-opacity-80 shadow-md rounded-lg backdrop-blur-md">
+          <TextButtons />
+          <ColorSelector />
+          <NodeSelector />
+        </div>}
+        interactive>
+        <Paintbrush className="text-blue-400" size={IconSizeSmall} />
+      </Tippy>
     </>
   );
 }
