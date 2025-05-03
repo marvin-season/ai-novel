@@ -1,27 +1,24 @@
 import { MessageType, useAgentStore } from "@/store/agentStore";
 import MessageList from "./message-list";
-import { useEffect } from "react";
-
+import { Sender } from '@ant-design/x';
+import { generateId } from "@/utils";
 export default function ChatAssistant() {
-  const initializeMessages = useAgentStore((state) => state.initializeMessages);
-  useEffect(() => {
-    console.log("init");
-    initializeMessages([
-      {
-        content: " System Tips: click the btn!",
-        type: MessageType.system,
-        id: "otyl4xqgjoe",
-        timestamp: 1744789231918,
-      },
-    ]);
-    return () => {
-      console.log("clean");
-      initializeMessages([]);
-    };
-  }, []);
+  const updateMessage = useAgentStore((state) => state.updateMessage);
+
   return (
-    <div>
+    <div className="flex flex-col h-full p-4">
       <MessageList />
+      <Sender
+        onSubmit={(content) => {
+          updateMessage({
+            id: generateId(),
+            content,
+            timestamp: Date.now(),
+            type: MessageType.user,
+          });
+        }}
+        allowSpeech
+      />
     </div>
   )
 }

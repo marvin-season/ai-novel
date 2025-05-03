@@ -44,3 +44,10 @@ export async function handleImport(
     toast.error("No file selected.");
   }
 }
+
+/**
+ * Generate a unique ID for messages
+ */
+export function generateId(): string {
+  return Math.random().toString(36).substring(2, 15);
+}
