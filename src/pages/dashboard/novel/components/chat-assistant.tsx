@@ -1,4 +1,4 @@
-import { IMessageStatus, MessageType, useAgentStore } from "@/store/agentStore";
+import { IMessageStatus, MessageRole, useAgentStore } from "@/store/agentStore";
 import MessageList from "./message-list";
 import { Sender } from '@ant-design/x';
 import { generateId } from "@/utils";
@@ -11,6 +11,7 @@ export default function ChatAssistant() {
   const replaceMessage = useAgentStore((state) => state.replaceMessage);
   const messages = useAgentStore(state => state.messages);
   const idRef = useRef('');
+  const [value, setValue] = useState<string>('');
   const { completion, complete, isLoading, setCompletion } = useCompletion({
     fetch: completionFetch,
     onResponse: (response) => {
@@ -30,7 +31,7 @@ export default function ChatAssistant() {
         id: idRef.current,
         content: completion,
         timestamp: Date.now(),
-        type: MessageType.bot,
+        role: MessageRole.assistant,
         status: IMessageStatus.typing,
       });
       setCompletion("");
@@ -40,23 +41,28 @@ export default function ChatAssistant() {
     <div className="flex flex-col h-full p-4 w-[480px]">
       <MessageList />
       <Sender
+        value={value}
+        onChange={(value) => {
+          setValue(value)
+        }}
         loading={isLoading}
-        onSubmit={async (content) => {
+        onSubmit={async () => {
           idRef.current = generateId();
           replaceMessage({
             id: generateId(),
-            content,
+            content: value,
             timestamp: Date.now(),
-            type: MessageType.user,
+            role: MessageRole.user,
           });
           replaceMessage({
             id: idRef.current,
             content: 'a',
             timestamp: Date.now(),
-            type: MessageType.bot,
+            role: MessageRole.assistant,
             status: IMessageStatus.loading,
           });
-          await complete(content, {
+          setValue('');
+          await complete(value, {
             body: {
               command: AICommand.chat,
               context: messages

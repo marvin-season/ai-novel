@@ -5,12 +5,12 @@ import { devtools } from "zustand/middleware";
 /**
  * Enum for UI message types
  */
-export enum MessageType {
-  system,
-  user,
-  bot,
-  tool,
-  computer,
+export enum MessageRole {
+  system = "system",
+  user = "user",
+  assistant = "assistant",
+  tool = "tool",
+  computer = "computer",
 }
 
 export enum IMessageStatus {
@@ -29,7 +29,7 @@ export interface IMessageProps {
   /** Content of the message */
   content: string;
   /** Type of UI to render for this message */
-  type: MessageType;
+  role: MessageRole;
   /** Optional timestamp for the message */
   timestamp?: number;
   title?: string;
@@ -49,7 +49,7 @@ export interface AgentState {
   initializeMessages: (messages: IMessageProps[]) => void;
 
   /** Selectors */
-  getMessagesByType: (type: MessageType) => IMessageProps[];
+  getMessagesByType: (type: MessageRole) => IMessageProps[];
   getLatestMessage: () => IMessageProps | null;
 }
 
@@ -105,8 +105,8 @@ export const useAgentStore = create<AgentState>()(
       },
 
       // Selectors
-      getMessagesByType: (type: MessageType) => {
-        return get().messages.filter((message) => message.type === type);
+      getMessagesByType: (type: MessageRole) => {
+        return get().messages.filter((message) => message.role === type);
       },
 
       getLatestMessage: () => {

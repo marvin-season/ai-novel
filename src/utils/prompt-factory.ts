@@ -1,4 +1,4 @@
-import { AICommand } from "@/types";
+import { AICommand, BaseMessageProps } from "@/types";
 import { CoreMessage } from "ai";
 
 export const getPrompt = ({
@@ -8,9 +8,9 @@ export const getPrompt = ({
 }: {
   prompt?: string;
   command: AICommand;
-  context?: string;
+  context?: string | CoreMessage[];
 }): CoreMessage[] => {
-  let messages: CoreMessage[] = [
+  const messages: CoreMessage[] = [
     {
       role: "system",
       content:
@@ -21,9 +21,16 @@ export const getPrompt = ({
   // 使用 switch 语句替换 ts-pattern
   switch (command) {
     case AICommand.chat:
+      const contextMessages = (context as CoreMessage[]).map(message => {
+        return {
+          role: message.role,
+          content: message.content as string,
+        } as CoreMessage
+      })
+      messages.push(...contextMessages)
       messages.push({
         role: "system",
-        content: `你是一个AI对话手，用户的对话上下文:  ${JSON.stringify(context)}`,
+        content: `你是一个AI对话手，请根据上面的历史对话记录来回复用户的提问`,
       });
       messages.push({
         role: "user",
@@ -128,10 +135,8 @@ export const getPrompt = ({
 
     default:
       // 默认情况下，返回一个空的 messages 数组
-      messages = [];
       break;
   }
 
-  // 添加额外的系统提示
-  return messages as CoreMessage[];
+  return messages
 };
