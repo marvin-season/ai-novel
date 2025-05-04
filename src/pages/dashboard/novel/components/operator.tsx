@@ -12,7 +12,7 @@ import { IconSizeSmall, IconSizeSmall as size } from "@/constants";
 import { handleExport, handleImport } from "@/utils";
 import { ColorSelector, NodeSelector, TextButtons } from "@/components/advanced-rich-editor";
 import Tippy from "@tippyjs/react";
-
+import 'tippy.js/animations/shift-away.css';
 
 export default function Operator() {
   const { editor } = useCurrentEditor();
@@ -67,6 +67,8 @@ export default function Operator() {
       <Separator className="w-full" orientation="horizontal" />
 
       <Tippy
+        animation="shift-away"
+        placement="right"
         content={<div className="transition-all bg-white bg-opacity-80 shadow-md rounded-lg backdrop-blur-md">
           <TextButtons />
           <ColorSelector />
