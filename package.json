@@ -19,6 +19,7 @@
     "@ai-sdk/react": "^1.2.11",
     "@ant-design/icons": "^6.0.0",
     "@ant-design/x": "^1.2.0",
+    "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-popover": "^1.1.4",
     "@radix-ui/react-scroll-area": "^1.2.2",

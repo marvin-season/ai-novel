@@ -1,4 +1,4 @@
-import { Brain } from "lucide-react";
+import { GearSix } from "@phosphor-icons/react";
 import {
   Sheet,
   SheetTrigger,
@@ -43,7 +43,7 @@ export default function () {
       <Sheet>
         <SheetTrigger>
           <div className=""> 
-            <Brain size={IconSizeMiddle}  />
+            <GearSix size={IconSizeMiddle} className="text-green-600"/>
           </div>
         </SheetTrigger>
         <SheetContent side={"top"}>
