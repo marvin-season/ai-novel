@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RichEditorProvider } from "@/components/rich-editor";
 
 import { EditorProviderProps, useCurrentEditor } from "@tiptap/react";
@@ -8,8 +8,8 @@ import {
 } from "@/components/advanced-rich-editor";
 import Operator from "@/pages/dashboard/novel/components/operator";
 import NovelBubbleMenu from "./novel-bubble-menu";
-import ChatAssistant from "./chat-assistant";
 import { Separator } from "@/components/ui/separator";
+import ChatAssistantLoader from "./chat-assistant-loader";
 export default function NovelEditor({
   content,
   children,
@@ -23,6 +23,7 @@ export default function NovelEditor({
       editor?.commands.setContent("");
     };
   }, []);
+
   return (
     <>
       <RichEditorProvider
@@ -32,7 +33,7 @@ export default function NovelEditor({
             <Operator />
           </div>
         }
-        slotAfter={<ChatAssistant />}
+        slotAfter={<ChatAssistantLoader />}
         extensions={extentions}
         editorContainerProps={{
           className:
@@ -41,7 +42,6 @@ export default function NovelEditor({
         {...props}
       >
         {children}
-        <Separator orientation="vertical"/>
         <NovelBubbleMenu />
       </RichEditorProvider>
     </>
