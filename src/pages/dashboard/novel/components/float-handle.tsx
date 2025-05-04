@@ -3,7 +3,8 @@ import Navbar from "../../components/navbar";
 import { useState } from "react";
 import 'tippy.js/animations/shift-away.css';
 import { IconSizeMiddle } from "@/constants";
-import { SettingsIcon } from "lucide-react";
+import { Compass } from "@phosphor-icons/react";
+import { Tooltip } from "@/components/tooltip";
 
 export default function FloatHandle() {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,11 +17,14 @@ export default function FloatHandle() {
                 interactive
                 onClickOutside={() => setIsOpen(false)}
             >
-                <SettingsIcon
-                    size={IconSizeMiddle}
-                    onClick={() => setIsOpen(!isOpen)}
-                    className={`transition-all duration-500 ${isOpen ? "rotate-0" : "rotate-45"}`}
-                />
+                <Tooltip content="指南">
+                    <Compass
+                        size={IconSizeMiddle}
+                        onClick={() => setIsOpen(!isOpen)}
+                        className={`transition-all duration-500 ${isOpen ? "rotate-0" : "rotate-45"}`}
+                    />
+                </Tooltip>
+
             </Tippy>
         </div>
     )
