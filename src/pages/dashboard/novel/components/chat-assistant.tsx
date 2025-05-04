@@ -9,9 +9,8 @@ import { AICommand } from "@/types";
 import { useEffect, useRef, useState } from "react";
 export default function ChatAssistant() {
   const replaceMessage = useAgentStore((state) => state.replaceMessage);
-  const messages = useAgentStore(state => state.messages);
+  const { messages, value, setValue } = useAgentStore();
   const idRef = useRef('');
-  const [value, setValue] = useState<string>('');
   const { completion, complete, isLoading, setCompletion } = useCompletion({
     fetch: completionFetch,
     onResponse: (response) => {

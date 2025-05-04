@@ -40,6 +40,8 @@ export interface IMessageProps {
  * Interface for agent store state
  */
 export interface AgentState {
+  value: string;
+  setValue: (value: string) => void;
   /** Array of messages */
   messages: IMessageProps[];
 
@@ -61,8 +63,14 @@ export const useAgentStore = create<AgentState>()(
     immer((set, get) => ({
       // Initial state
       messages: [],
+      value: "",
 
       // Actions
+      setValue: (value) => {
+        set((state) => {
+          state.value = value;
+        });
+      },
       replaceMessage(message) {
         set((state) => {
           const index = state.messages.findIndex(

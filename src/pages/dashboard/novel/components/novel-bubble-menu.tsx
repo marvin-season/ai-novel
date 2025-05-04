@@ -1,4 +1,4 @@
-import { GenerativeBubbleMenu, NodeSelector, TextButtons, ColorSelector } from '@/components/advanced-rich-editor'
+import { GenerativeBubbleMenu, NodeSelector, AssistantSelector, TextButtons, ColorSelector } from '@/components/advanced-rich-editor'
 import { Separator } from '@/components/ui/separator'
 import { useState } from 'react';
 
@@ -9,6 +9,8 @@ export default function NovelBubbleMenu({ }: Props) {
 
     return (
         <GenerativeBubbleMenu open={open} onOpenChange={setOpen}>
+            <Separator className="h-auto" orientation="vertical" />
+            <AssistantSelector />
             <Separator className="h-auto" orientation="vertical" />
             <NodeSelector />
             <Separator className="h-auto" orientation="vertical" />
