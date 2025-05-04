@@ -3,17 +3,20 @@ import { Bubble } from '@ant-design/x';
 import { BaseMessageProps } from "@/types";
 import { BotIcon } from "lucide-react";
 import { IconSizeSmall } from "@/constants";
+import { IMessageStatus } from "@/store/agentStore";
 /**
  * Props for the UserMessage component
  */
-interface UserMessageProps extends BaseMessageProps { }
+interface BotMessageProps extends BaseMessageProps {
+}
 
 /**
  * User message UI component
  */
-export const BotMessage = memo(({ message }: UserMessageProps) => {
+export const BotMessage = memo(({ message }: BotMessageProps) => {
   return (
     <Bubble
+      loading={message.status === IMessageStatus.loading}
       placement="start"
       content={message.content}
       avatar={{

@@ -1,4 +1,4 @@
-import { MessageType, useAgentStore } from "@/store/agentStore";
+import { IMessageStatus, MessageType, useAgentStore } from "@/store/agentStore";
 import MessageList from "./message-list";
 import { Sender } from '@ant-design/x';
 import { generateId } from "@/utils";
@@ -31,6 +31,7 @@ export default function ChatAssistant() {
         content: completion,
         timestamp: Date.now(),
         type: MessageType.bot,
+        status: IMessageStatus.typing,
       });
       setCompletion("");
     }
@@ -40,7 +41,7 @@ export default function ChatAssistant() {
       <MessageList />
       <Sender
         loading={isLoading}
-        onSubmit={(content) => {
+        onSubmit={async (content) => {
           idRef.current = generateId();
           replaceMessage({
             id: generateId(),
@@ -48,7 +49,14 @@ export default function ChatAssistant() {
             timestamp: Date.now(),
             type: MessageType.user,
           });
-          complete(content, {
+          replaceMessage({
+            id: idRef.current,
+            content: 'a',
+            timestamp: Date.now(),
+            type: MessageType.bot,
+            status: IMessageStatus.loading,
+          });
+          await complete(content, {
             body: {
               command: AICommand.chat,
               context: messages

@@ -8,7 +8,7 @@ import { useMemo } from "react";
   
     // Memoize the rendered messages to prevent unnecessary re-renders
     const renderedMessages = useMemo(() => {
-      return messages.map((message) => messageRegistry.renderMessage(message));
+      return messages.map((message, index) => messageRegistry.renderMessage(message, index));
     }, [messages]);
   
     return (

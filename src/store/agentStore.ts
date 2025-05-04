@@ -13,6 +13,13 @@ export enum MessageType {
   computer,
 }
 
+export enum IMessageStatus {
+  loading = "loading",
+  typing = "typing",
+  success = "success",
+  error = "error",
+}
+
 /**
  * Interface for message properties
  */
@@ -26,6 +33,7 @@ export interface IMessageProps {
   /** Optional timestamp for the message */
   timestamp?: number;
   title?: string;
+  status?: IMessageStatus;
 }
 
 /**

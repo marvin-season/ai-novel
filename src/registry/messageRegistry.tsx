@@ -43,11 +43,11 @@ class MessageRegistry {
    * @param message Message to render
    * @returns Rendered component or null if no renderer found
    */
-  renderMessage(message: IMessageProps): ReactNode {
+  renderMessage(message: IMessageProps, index: number): ReactNode {
     const Renderer = this.getRenderer(message.type);
     if (!Renderer) return null;
 
-    return <Renderer key={message.id} message={message} />;
+    return <Renderer key={message.id} message={message} index={index}/>;
   }
 
   /**
