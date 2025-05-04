@@ -12,7 +12,7 @@ import { useMemo } from "react";
     }, [messages]);
   
     return (
-      <div className="flex-1 flex flex-col gap-3 p-4">{renderedMessages}</div>
+      <div className="flex-1 flex flex-col gap-3 p-4 pb-8">{renderedMessages}</div>
     );
   };
   

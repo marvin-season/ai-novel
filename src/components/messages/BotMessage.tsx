@@ -16,6 +16,7 @@ interface BotMessageProps extends BaseMessageProps {
 export const BotMessage = memo(({ message }: BotMessageProps) => {
   return (
     <Bubble
+      header={<span className="text-xs text-gray-400">{new Date(message.timestamp!).toLocaleString()}</span>}
       loading={message.status === IMessageStatus.loading}
       placement="start"
       content={message.content}

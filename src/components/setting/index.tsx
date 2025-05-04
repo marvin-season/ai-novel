@@ -1,4 +1,4 @@
-import { Settings } from "lucide-react";
+import { Brain } from "lucide-react";
 import {
   Sheet,
   SheetTrigger,
@@ -43,7 +43,7 @@ export default function () {
       <Sheet>
         <SheetTrigger>
           <div className=""> 
-            <Settings size={IconSizeMiddle}  />
+            <Brain size={IconSizeMiddle}  />
           </div>
         </SheetTrigger>
         <SheetContent side={"top"}>

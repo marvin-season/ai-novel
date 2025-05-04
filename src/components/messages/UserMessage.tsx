@@ -13,6 +13,7 @@ interface UserMessageProps extends BaseMessageProps { }
 export const UserMessage = memo(({ message }: UserMessageProps) => {
   return (
     <Bubble
+      header={<span className="text-xs text-gray-400">{new Date(message.timestamp!).toLocaleString()}</span>}
       placement="end"
       content={message.content}
       avatar={{
