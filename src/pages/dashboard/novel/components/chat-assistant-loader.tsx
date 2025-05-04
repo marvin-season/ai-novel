@@ -6,24 +6,23 @@ import { Separator } from '@/components/ui/separator';
 
 
 export default function ChatAssistantLoader() {
-    const [loadChatAssistant, setLoadChatAssistant] = useState(true);
+    const [visible, setVisible] = useState(true);
 
     return (
-        <>
+        <div className={`absolute flex h-dvh right-0 top-0 transition-all duration-500 ${visible ? '' : 'translate-x-[400px]'}`}>
+            {/* {visible && <Separator orientation="vertical" />} */}
+
             <CaretCircleDoubleLeft
-                className={`text-gray-400 hover:text-gray-600 cursor-pointer m-auto transition-all ${!loadChatAssistant ? 'rotate-0' : 'rotate-180'}`}
+                className={`text-gray-400 hover:text-gray-600 cursor-pointer m-auto transition-all ${!visible ? 'rotate-0' : 'rotate-180'}`}
                 size={IconSizeMiddle} weight="thin"
                 onClick={() => {
-                    setLoadChatAssistant(!loadChatAssistant)
+                    setVisible(!visible)
                 }}
 
-            >
+            />
 
-            </CaretCircleDoubleLeft>
-            {loadChatAssistant && <Separator orientation="vertical" />}
-
-            {loadChatAssistant && <ChatAssistant />}
-        </>
+            <ChatAssistant visible={visible} />
+        </div>
 
     )
 }
