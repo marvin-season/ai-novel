@@ -2,10 +2,10 @@ import { RouteObject } from "react-router-dom";
 import Dashboard from "@/pages/dashboard";
 import { lazy, Suspense } from "react";
 import { Loading } from "@/components/loading";
-import Recoder from "@/pages/dashboard/recoder";
-
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
+
+const Recoder = lazy(() => import("@/pages/dashboard/recoder"))
 
 
 const routes: RouteObject[] = [
