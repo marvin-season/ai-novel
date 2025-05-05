@@ -12,6 +12,7 @@ const routes: RouteObject[] = [
   {
     path: "/",
     Component: Dashboard,
+    ErrorBoundary: () => <div>error</div>,
     children: [
       {
         index: true,

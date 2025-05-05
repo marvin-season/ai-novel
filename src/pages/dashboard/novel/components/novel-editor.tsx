@@ -19,6 +19,7 @@ export default function NovelEditor({
   return (
     <>
       <RichEditorProvider
+        key={1}
         content={content}
         slotBefore={<EditorBar />}
         slotAfter={<ChatAssistantLoader />}

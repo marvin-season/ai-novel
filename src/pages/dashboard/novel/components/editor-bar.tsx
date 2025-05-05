@@ -23,7 +23,7 @@ export default function EditorBar() {
 
 
   return (
-    <div className="px-2 py-2 bg-background flex gap-2 items-start justify-end border-b">
+    <div className="px-2 bg-background flex gap-2 items-start justify-end border-b">
       <NovelSelect />
       <div className="flex">
         <TextButtons />

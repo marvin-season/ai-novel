@@ -4,10 +4,8 @@ import { useEffect, useMemo } from "react";
 import NovelCreator from "./components/novel.creator";
 
 const NovelPage = () => {
-  const { novels, novelId, setNovelId } = useNovelStore();
-  const currentNovel = useMemo(() => {
-    return novels.find(novel => novel.id === novelId)
-  }, [novels, novelId]);
+  const { novelId, setNovelId, getCurrentNovel } = useNovelStore();
+
 
   useEffect(() => {
     return () => {
@@ -17,7 +15,7 @@ const NovelPage = () => {
   return (
     <div className="h-full relative flex flex-col transition-all">
       {
-        novelId ? <NovelEditor content={currentNovel?.content} /> :
+        novelId ? <NovelEditor content={getCurrentNovel()?.content || ''} /> :
           <NovelCreator />
       }
 
