@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { immer } from "zustand/middleware/immer";
 import { devtools } from "zustand/middleware";
+import { generateId } from '@/utils';
 
 type Novel = {
     content: string;
@@ -16,7 +17,7 @@ interface NovelStore {
     setNovelId: (val: string) => void;
 
     novels: Novel[];
-    createNovel: (novel: Novel) => void;
+    createNovel: (novel: Partial<Novel>) => void;
     updateNovel: (id: string, content: string) => void;
 }
 
@@ -42,7 +43,7 @@ export const useNovelStore = create<NovelStore>()(
                 createNovel(novel) {
                     set(state => {
                         const now = Date.now();
-                        state.novels.push({ ...novel, createTime: now, updateTime: now });
+                        state.novels.push({ ...novel, id: generateId(), createTime: now, updateTime: now });
                     })
                 },
                 updateNovel(id, content) {

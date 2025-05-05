@@ -10,16 +10,18 @@ import { useCurrentEditor } from "@tiptap/react";
 import { Separator } from "@/components/ui/separator";
 import { IconSizeSmall, IconSizeSmall as size } from "@/constants";
 import { handleExport, handleImport } from "@/utils";
-import { ColorSelector, NodeSelector, TextButtons } from "@/components/advanced-rich-editor";
+import { TextButtons } from "@/components/advanced-rich-editor";
 import 'tippy.js/animations/shift-away.css';
 import { Button } from "@/components/ui/button";
 import { useNovelStore } from "@/store/novel";
 import { Select } from 'antd';
 import { useEffect, useMemo } from "react";
-
+import { toast } from "sonner";
 export default function EditorBar() {
   const { editor } = useCurrentEditor();
   const setNovelId = useNovelStore(state => state.setNovelId)
+  const updateNovel = useNovelStore(state => state.updateNovel)
+  const createNovel = useNovelStore(state => state.createNovel)
   const { novels, novelId } = useNovelStore();
 
   useEffect(() => {
@@ -53,6 +55,15 @@ export default function EditorBar() {
           onSearch={console.log}
           options={novelOptions}
         />
+        <Button size={"sm"} variant="ghost" onClick={() => {
+          const md = editor.storage.markdown.getMarkdown();
+          if (novelId) {
+            updateNovel(novelId, md)
+          } else {
+            createNovel({ content: md })
+          }
+          toast.success("保存成功")
+        }}>保存</Button>
       </div>
       <div className="flex">
         <TextButtons />
