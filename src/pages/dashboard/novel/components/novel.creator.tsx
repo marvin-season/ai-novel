@@ -25,7 +25,7 @@ export default function NovelCreator() {
                     }
                     const md = editor?.storage.markdown.getMarkdown();
                     const id = generateId()
-                    createNovel({ id, content: md, title });
+                    createNovel({ id, content: md, title: title.endsWith('.md') ? title : title + '.md' });
                     setNovelId(id)
                     toast.success(`创建成功`)
                 }}>Create</Button>

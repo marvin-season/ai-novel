@@ -9,7 +9,7 @@ export default function NovelCard({ novel, onClick }: Props) {
   return (
     <div
       key={novel.id}
-      className="border p-2 rounded-lg border-gray-200 hover:shadow-lg pb-4"
+      className="border p-4 rounded-lg border-gray-200 hover:shadow-lg pb-4"
       onClick={() => {
         onClick(novel)
       }}
