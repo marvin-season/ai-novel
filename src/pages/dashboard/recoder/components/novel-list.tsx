@@ -5,7 +5,7 @@ type Props = {}
 
 export default function NovelList({ }: Props) {
     const navigate = useNavigate()
-    const { novels } = useNovelStore()
+    const { novels, setNovelId } = useNovelStore()
     return (
       <div className="space-y-4 p-4">
         {novels.map((novel) => (
@@ -13,7 +13,7 @@ export default function NovelList({ }: Props) {
             key={novel.id}
             className="border-b border-gray-200 pb-4"
             onClick={() => {
-                useNovelStore.getState().setNovelId(novel.id)
+                setNovelId(novel.id)
                 navigate('/');
             }}
           >

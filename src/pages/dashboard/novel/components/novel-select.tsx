@@ -63,7 +63,8 @@ export default function NovelSelect() {
 
             <Modal
                 open={open}
-                onCancel={() => setOpen(false)} onOk={() => {
+                onCancel={() => setOpen(false)} 
+                onOk={() => {
                     if (!title) {
                         toast.error('请输入标题')
                     }

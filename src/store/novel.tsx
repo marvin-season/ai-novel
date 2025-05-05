@@ -3,7 +3,7 @@ import { immer } from "zustand/middleware/immer";
 import { devtools } from "zustand/middleware";
 import { generateId } from '@/utils';
 
-type Novel = {
+export type Novel = {
     content: string;
     title: string;
     id: string;
@@ -63,6 +63,7 @@ export const useNovelStore = create<NovelStore>()(
 
             })
         ), {
-        name: "novel-store"
+        name: "novel-store",
+        enabled: true
     })
 )
