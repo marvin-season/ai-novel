@@ -6,9 +6,8 @@ import { EditorProviderProps, useCurrentEditor } from "@tiptap/react";
 import {
   useAdvancedExtentions
 } from "@/components/advanced-rich-editor";
-import Operator from "@/pages/dashboard/novel/components/operator";
+import EditorBar from "@/pages/dashboard/novel/components/editor-bar";
 import NovelBubbleMenu from "./novel-bubble-menu";
-import { Separator } from "@/components/ui/separator";
 import ChatAssistantLoader from "./chat-assistant-loader";
 export default function NovelEditor({
   content,
@@ -28,11 +27,7 @@ export default function NovelEditor({
     <>
       <RichEditorProvider
         content={content}
-        slotBefore={
-          <div className="shadow-lg py-4 px-6 bg-background flex flex-col gap-4 items-start border-b">
-            <Operator />
-          </div>
-        }
+        slotBefore={<EditorBar />}
         slotAfter={<ChatAssistantLoader />}
         extensions={extentions}
         editorContainerProps={{

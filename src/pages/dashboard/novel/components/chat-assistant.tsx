@@ -42,7 +42,7 @@ export default function ChatAssistant({ visible }: Props) {
   }, [completion]);
   return (
     <>
-      <div className={`flex flex-col h-full w-[400px] box-border overflow-y-scroll shadow-md backdrop-blur-lg bg-[#fff6]`}>
+      <div className={`flex flex-col h-full w-[400px] box-border overflow-y-scroll shadow-md backdrop-blur-sm bg-[#fffe]`}>
         <MessageList />
         <div
           className="sticky bottom-4 bg-white px-4"
