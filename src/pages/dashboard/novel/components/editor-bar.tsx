@@ -1,40 +1,21 @@
 import {
   Code2,
   Download,
-  Paintbrush,
   Redo2,
   Undo2,
   Upload,
 } from "lucide-react";
 import { useCurrentEditor } from "@tiptap/react";
 import { Separator } from "@/components/ui/separator";
-import { IconSizeSmall, IconSizeSmall as size } from "@/constants";
+import {  IconSizeSmall as size } from "@/constants";
 import { handleExport, handleImport } from "@/utils";
 import { TextButtons } from "@/components/advanced-rich-editor";
 import 'tippy.js/animations/shift-away.css';
 import { Button } from "@/components/ui/button";
-import { useNovelStore } from "@/store/novel";
-import { Select } from 'antd';
-import { useEffect, useMemo } from "react";
-import { toast } from "sonner";
+import NovelSelect from "./novel-select";
 export default function EditorBar() {
   const { editor } = useCurrentEditor();
-  const setNovelId = useNovelStore(state => state.setNovelId)
-  const updateNovel = useNovelStore(state => state.updateNovel)
-  const createNovel = useNovelStore(state => state.createNovel)
-  const { novels, novelId } = useNovelStore();
 
-  useEffect(() => {
-    const currentNovel = novels.find(novel => novel.id === novelId)
-    if (currentNovel) {
-      editor?.commands.setContent(currentNovel.content);
-    }
-  }, [novelId]);
-
-  const novelOptions = useMemo(
-    () =>
-      novels.map(item => ({ value: item.id, label: item.title }))
-    , [novels]);
 
   if (!editor) {
     return null;
@@ -43,28 +24,7 @@ export default function EditorBar() {
 
   return (
     <div className="px-2 py-2 bg-background flex gap-2 items-start justify-end border-b">
-      <div className="mr-auto h-full flex gap-2 items-center">
-        <Select
-          value={novelId}
-          className="w-[200px] truncate"
-          showSearch
-          placeholder="Select a novel"
-          onChange={(id) => {
-            setNovelId(id)
-          }}
-          onSearch={console.log}
-          options={novelOptions}
-        />
-        <Button size={"sm"} variant="ghost" onClick={() => {
-          const md = editor.storage.markdown.getMarkdown();
-          if (novelId) {
-            updateNovel(novelId, md)
-          } else {
-            createNovel({ content: md })
-          }
-          toast.success("保存成功")
-        }}>保存</Button>
-      </div>
+      <NovelSelect />
       <div className="flex">
         <TextButtons />
         <Button size="sm" className="rounded-none" variant="ghost"

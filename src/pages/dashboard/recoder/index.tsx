@@ -1,15 +1,9 @@
+import NovelList from "./components/novel-list";
 
 export default function Recorder() {
-  const contentMD = ''
   return (
     <div>
-      {contentMD}
-      <button
-        onClick={() => {
-        }}
-      >
-        
-      </button>
+      <NovelList />
     </div>
   );
 }

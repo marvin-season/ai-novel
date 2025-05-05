@@ -17,7 +17,7 @@ interface NovelStore {
     setNovelId: (val: string) => void;
 
     novels: Novel[];
-    createNovel: (novel: Partial<Novel>) => void;
+    createNovel: (novel: Partial<Novel> & Pick<Novel, 'content' | 'title'>) => void;
     updateNovel: (id: string, content: string) => void;
 }
 
