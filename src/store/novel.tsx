@@ -17,7 +17,7 @@ interface NovelStore {
     setNovelId: (val: string) => void;
 
     novels: Novel[];
-    createNovel: (novel: Partial<Novel> & Pick<Novel, 'content' | 'title'>) => void;
+    createNovel: (novel: Partial<Novel> & Pick<Novel, 'content' | 'title' | 'id'>) => void;
     updateNovel: (id: string, content: string) => void;
 }
 
@@ -43,7 +43,7 @@ export const useNovelStore = create<NovelStore>()(
                 createNovel(novel) {
                     set(state => {
                         const now = Date.now();
-                        state.novels.push({ ...novel, id: generateId(), createTime: now, updateTime: now });
+                        state.novels.push({ ...novel, createTime: now, updateTime: now });
                     })
                 },
                 updateNovel(id, content) {

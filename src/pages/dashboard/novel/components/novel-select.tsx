@@ -1,4 +1,5 @@
 import { useNovelStore } from '@/store/novel';
+import { generateId } from '@/utils';
 import { Plus } from '@phosphor-icons/react';
 import { useCurrentEditor } from '@tiptap/react';
 import { Select, Button, Modal, Input } from 'antd';
@@ -45,15 +46,20 @@ export default function NovelSelect() {
                 onSearch={console.log}
                 options={novelOptions}
             />
-            <Button icon={<Plus />} onClick={() => {
+            {novelId && <Button onClick={() => {
                 const md = editor?.storage.markdown.getMarkdown();
-                if (novelId) {
+                if (md) {
                     updateNovel(novelId, md)
                     toast.success(`${operateName}成功`)
-                } else {
-                    setOpen(true)
                 }
-            }}>{operateName}</Button>
+            }}>{'保存'}</Button>
+            }
+            <Button
+                icon={<Plus />}
+                onClick={() => {
+                    setOpen(true)
+                }}
+            >{'新建'}</Button>
 
             <Modal
                 open={open}
@@ -62,7 +68,9 @@ export default function NovelSelect() {
                         toast.error('请输入标题')
                     }
                     const md = editor?.storage.markdown.getMarkdown();
-                    createNovel({ content: md, title });
+                    const id = generateId()
+                    createNovel({ id, content: md, title });
+                    setNovelId(id)
                     toast.success(`${operateName}成功`)
                     setOpen(false)
                 }}>
