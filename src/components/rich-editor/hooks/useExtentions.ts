@@ -18,9 +18,11 @@ export default function useExtentions() {
     Underline,
     CodeBlockHighlight,
     Placeholder.configure({
-      // placeholder: "Please write something ...",
       placeholder({ node }) {
-        return "Write down your thoughts, and use AI to improve your idea!";
+        if(node.type.name === "codeBlock") {
+          return "code here...";
+        }
+        return "妙笔生花";
       },
     }),
   ];
