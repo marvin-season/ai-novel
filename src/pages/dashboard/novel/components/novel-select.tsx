@@ -1,8 +1,9 @@
-import { Button } from '@/components/ui/button';
 import { useNovelStore } from '@/store/novel';
+import { Plus } from '@phosphor-icons/react';
 import { useCurrentEditor } from '@tiptap/react';
-import { Select } from 'antd';
-import React, { useEffect, useMemo } from 'react'
+import { Select, Button, Modal, Input } from 'antd';
+import { set } from 'lodash-es';
+import React, { useEffect, useMemo, useState } from 'react'
 import { toast } from 'sonner';
 
 export default function NovelSelect() {
@@ -13,6 +14,8 @@ export default function NovelSelect() {
 
     const { editor } = useCurrentEditor();
 
+    const [title, setTitle] = useState('');
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const currentNovel = novels.find(novel => novel.id === novelId)
@@ -20,6 +23,10 @@ export default function NovelSelect() {
             editor?.commands.setContent(currentNovel.content);
         }
     }, [novelId]);
+
+    const operateName = useMemo(() => {
+        return novelId ? '保存' : '创建'
+    }, [novelId])
 
     const novelOptions = useMemo(
         () =>
@@ -38,16 +45,35 @@ export default function NovelSelect() {
                 onSearch={console.log}
                 options={novelOptions}
             />
-            <Button size={"sm"} variant="ghost" onClick={() => {
+            <Button icon={<Plus />} onClick={() => {
                 const md = editor?.storage.markdown.getMarkdown();
-                if (novelId && md) {
+                if (novelId) {
                     updateNovel(novelId, md)
+                    toast.success(`${operateName}成功`)
                 } else {
-
-                    createNovel({ content: md, title: "未命名" })
+                    setOpen(true)
                 }
-                toast.success("保存成功")
-            }}>保存</Button>
+            }}>{operateName}</Button>
+
+            <Modal
+                open={open}
+                onCancel={() => setOpen(false)} onOk={() => {
+                    if (!title) {
+                        toast.error('请输入标题')
+                    }
+                    const md = editor?.storage.markdown.getMarkdown();
+                    createNovel({ content: md, title });
+                    toast.success(`${operateName}成功`)
+                    setOpen(false)
+                }}>
+                <Input
+                    className='mt-10'
+                    placeholder="请输入名称"
+                    required
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+            </Modal>
         </div>
     )
 }
