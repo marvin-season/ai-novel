@@ -2,7 +2,7 @@ import { RouteObject } from "react-router-dom";
 import Dashboard from "@/pages/dashboard";
 import { lazy, Suspense } from "react";
 import { Loading } from "@/components/loading";
-import Reading from "@/pages/dashboard/reading";
+import Recoder from "@/pages/dashboard/recoder";
 
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
@@ -22,10 +22,10 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: 'reading',
+        path: 'recoder',
         element: (
           <Suspense fallback={<Loading />}>
-            <Reading />
+            <Recoder />
           </Suspense>
         ),
       },

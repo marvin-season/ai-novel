@@ -1,5 +1,5 @@
 
-export default function Logger() {
+export default function Recorder() {
   const contentMD = ''
   return (
     <div>
@@ -8,7 +8,7 @@ export default function Logger() {
         onClick={() => {
         }}
       >
-        increment
+        
       </button>
     </div>
   );
