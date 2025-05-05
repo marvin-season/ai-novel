@@ -19,6 +19,7 @@ interface NovelStore {
     novels: Novel[];
     createNovel: (novel: Partial<Novel> & Pick<Novel, 'content' | 'title' | 'id'>) => void;
     updateNovel: (id: string, content: string) => void;
+    getCurrentNovel: () => Novel | undefined;
 }
 
 
@@ -39,7 +40,9 @@ export const useNovelStore = create<NovelStore>()(
                     content: 'hello world 1234',
                     assistantId: '0'
                 }],
-
+                getCurrentNovel(){
+                    return get().novels.find(item => item.id === get().novelId)
+                },
                 createNovel(novel) {
                     set(state => {
                         const now = Date.now();

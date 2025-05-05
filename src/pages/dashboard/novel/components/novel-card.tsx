@@ -18,7 +18,6 @@ export default function NovelCard({ novel, onClick }: Props) {
       <p className="text-xs text-gray-500 mb-1">
         创建时间：{novel.createTime ? new Date(novel.createTime).toLocaleString() : '未知'}
       </p>
-      <p className="text-sm text-gray-700 line-clamp-3">{novel.content!.slice(0, 100)}...</p>
     </div>
   )
 }
