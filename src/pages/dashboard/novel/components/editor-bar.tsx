@@ -13,9 +13,26 @@ import { handleExport, handleImport } from "@/utils";
 import { ColorSelector, NodeSelector, TextButtons } from "@/components/advanced-rich-editor";
 import 'tippy.js/animations/shift-away.css';
 import { Button } from "@/components/ui/button";
+import { useNovelStore } from "@/store/novel";
+import { Select } from 'antd';
+import { useEffect, useMemo } from "react";
 
 export default function EditorBar() {
   const { editor } = useCurrentEditor();
+  const setNovelId = useNovelStore(state => state.setNovelId)
+  const { novels, novelId } = useNovelStore();
+
+  useEffect(() => {
+    const currentNovel = novels.find(novel => novel.id === novelId)
+    if (currentNovel) {
+      editor?.commands.setContent(currentNovel.content);
+    }
+  }, [novelId]);
+
+  const novelOptions = useMemo(
+    () =>
+      novels.map(item => ({ value: item.id, label: item.title }))
+    , [novels]);
 
   if (!editor) {
     return null;
@@ -23,11 +40,19 @@ export default function EditorBar() {
 
 
   return (
-    <div className="px-2 bg-background flex gap-2 items-start justify-end border-b">
+    <div className="px-2 py-2 bg-background flex gap-2 items-start justify-end border-b">
       <div className="mr-auto h-full flex gap-2 items-center">
-        <span className="text-sm">index.md</span>
-        <span className="text-xs text-muted-foreground">未保存</span>
-
+        <Select
+          value={novelId}
+          className="w-[200px] truncate"
+          showSearch
+          placeholder="Select a novel"
+          onChange={(id) => {
+            setNovelId(id)
+          }}
+          onSearch={console.log}
+          options={novelOptions}
+        />
       </div>
       <div className="flex">
         <TextButtons />

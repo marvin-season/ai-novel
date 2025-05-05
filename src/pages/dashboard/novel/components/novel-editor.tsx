@@ -15,13 +15,6 @@ export default function NovelEditor({
   ...props
 }: EditorProviderProps) {
   const extentions = useAdvancedExtentions();
-  const { editor } = useCurrentEditor();
-  useEffect(() => {
-    editor?.commands.setContent(content || "");
-    return () => {
-      editor?.commands.setContent("");
-    };
-  }, []);
 
   return (
     <>
