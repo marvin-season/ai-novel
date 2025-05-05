@@ -17,6 +17,7 @@ export default function NovelSelect() {
                 size='sm'
                 variant={'ghost'}
                 onClick={() => {
+                    editor?.destroy()
                     setNovelId('');
                 }}>
                 <CaretLeft size={IconSizeSmall} />
