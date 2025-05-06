@@ -30,7 +30,7 @@ export default function NovelCreator() {
                     toast.success(`创建成功`)
                 }}>Create</Button>
             </div>
-            <div className="no-scrollbar border-t p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 max-h-[150px] overflow-scroll">
+            <div className="no-scrollbar p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 max-h-[250px] overflow-scroll">
                 {
                     novels.map(novel => {
                         return <NovelCard key={novel.id} novel={novel} onClick={() => {
