@@ -7,16 +7,23 @@ import { useState } from "react";
 import { toast } from "sonner";
 import NovelCard from "./novel-card";
 import { useNavigate } from "react-router-dom";
+import GoSetting from "./go-setting";
+import { useModelStore } from "@/store/model";
 
 export default function NovelCreator() {
   const [title, setTitle] = useState("");
   const { setNovelId, createNovel, novels } = useNovelStore();
   const navigate = useNavigate();
-
   const { editor } = useCurrentEditor();
+  const { config } = useModelStore();
+
+  if(!config) {
+    return <GoSetting />
+  }
+
   return (
     <div className="h-dvh flex flex-col items-center justify-center gap-4">
-      <div className="flex gap-4 items-center">
+      <div className={`flex gap-4 items-center`}>
         <Input
           required
           value={title}
@@ -25,6 +32,7 @@ export default function NovelCreator() {
           placeholder="输入名称创建一个新的笔记"
         />
         <Button
+          disabled={!title}
           size={"sm"}
           onClick={() => {
             if (!title) {
