@@ -13,7 +13,7 @@ const NovelPage = () => {
     }
   }, [])
   return (
-    <div className="h-full relative flex flex-col transition-all">
+    <div className="h-full relative flex flex-col overflow-x-hidden">
       {
         novelId ? <NovelEditor content={getCurrentNovel()?.content || ''} /> :
           <NovelCreator />
