@@ -1,7 +1,7 @@
 import { initOllamaProvider } from "./ollama-provider";
 import { initAzureProvider } from "./azure-provider";
 import { initDeepSeek } from "./deepseek-provider";
-import { DynamicParamsType } from "@/pages/dashboard/setting/components/dynamic-form";
+import { DynamicParamsType } from "@/components/form/dynamic-form";
 import { toast } from "sonner";
 export enum ModelProvider {
   Ollama = "ollama",

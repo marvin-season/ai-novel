@@ -62,7 +62,7 @@ export const useNovelStore = create<NovelStore>()(
           });
         },
       })),
-      { name: "position-storage" },
+      { name: "novel-storage" },
     ),
     { name: "novel-store" },
   ),

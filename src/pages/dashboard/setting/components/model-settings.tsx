@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import DynamicForm from "./dynamic-form";
+import { DynamicForm } from "@/components/form";
 import { useState } from "react";
 
 export default function ModelSettings({
