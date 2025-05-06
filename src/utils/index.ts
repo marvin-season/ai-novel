@@ -50,3 +50,6 @@ export async function handleImport(
 export function generateId(): string {
   return Math.random().toString(36).substring(2, 15);
 }
+
+export const isMobileDevice = (ua: string) =>
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster as ToasterSonner } from "sonner";
+import MobileDetector from "@/components/mobile-warning/MobileDetector";
 
 function App() {
   const { toast } = useToast();
@@ -15,9 +16,11 @@ function App() {
   }, []);
   return (
     <>
-      <Toaster />
-      <ToasterSonner />
-      <RouterProvider router={router}></RouterProvider>
+      <MobileDetector>
+        <Toaster />
+        <ToasterSonner />
+        <RouterProvider router={router}></RouterProvider>
+      </MobileDetector>
     </>
   );
 }
