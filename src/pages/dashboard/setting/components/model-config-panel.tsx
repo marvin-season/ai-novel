@@ -7,8 +7,7 @@ import { toast } from "sonner";
 const ModelConfigPanel = () => {
   const { config, setConfig } = useModelStore()
   const currentProvider = useMemo(() => {
-
-    return config ? config : providers[0];
+    return config ? config : providers.find((provider) => provider.default) || providers[0];
   }, [config, providers]);
   return (
     <div className="p-6">

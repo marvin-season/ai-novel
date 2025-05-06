@@ -1,6 +1,5 @@
 export const providers = [
   {
-    default: true,
     name: "ollama",
     id: "ollama",
     description: "ollama provider",
@@ -59,6 +58,7 @@ export const providers = [
     },
   },
   {
+    default: true,
     id: "deepseek",
     name: "deepseek",
     description: "deepseek provider",
@@ -70,13 +70,13 @@ export const providers = [
         value: "https://api.deepseek.com",
         placeholder: "请输入 deepseek_baseurl",
       },
-      deepseek_api_key: {
-        label: "deepseek_api_key",
-        type: "string",
-        default: "",
-        value: "",
-        placeholder: "请输入 deepseek_api_key",
-      },
+      // deepseek_api_key: {
+      //   label: "deepseek_api_key",
+      //   type: "string",
+      //   default: "",
+      //   value: "",
+      //   placeholder: "请输入 deepseek_api_key",
+      // },
       deepseek_model_id: {
         label: "deepseek_model_id",
         type: "select",
