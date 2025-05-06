@@ -55,7 +55,7 @@ export default function DynamicForm({ form, onSubmit }: DynamicFormInterface) {
           <div key={key} className="flex flex-col gap-2">
             {value.type === "string" && (
               <>
-                <span className="text-sm text-gray-500">{value.label}</span>
+                <span className="text-sm mt-2 pl-1 text-gray-500">{value.label}</span>
                 <Input
                   type={value.type}
                   name={key}

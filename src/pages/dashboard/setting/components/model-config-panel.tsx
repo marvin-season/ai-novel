@@ -2,6 +2,7 @@ import ModelSettings from "./model-settings";
 import { providers } from "@/constants/seed";
 import { useModelStore } from "@/store/model";
 import { useMemo } from "react";
+import { toast } from "sonner";
 
 const ModelConfigPanel = () => {
   const { config, setConfig } = useModelStore()
@@ -16,6 +17,7 @@ const ModelConfigPanel = () => {
         currentProvider={currentProvider}
         onSave={async (config) => {
           setConfig(config)
+          toast.success("保存成功");
         }}
       />
     </div>
