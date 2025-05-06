@@ -1,18 +1,9 @@
-import { GearSix } from "@phosphor-icons/react";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetDescription,
-  SheetTitle,
-} from "@/components/ui/sheet";
+
 import ModelSettings from "./model-settings";
 import { providers } from "@/constants/seed";
 import { useMemo } from "react";
-import { IconSizeMiddle } from "@/constants";
 
-export const ModelConfigPanel = () => {
+const ModelConfigPanel = () => {
   const currentProvider = useMemo(() => {
     const modelConfig = JSON.parse(
       localStorage.getItem("model-config") || "{}",
@@ -20,7 +11,7 @@ export const ModelConfigPanel = () => {
     return modelConfig.id ? modelConfig : providers[0];
   }, [providers]);
   return (
-    <>
+    <div className="p-6">
       <ModelSettings
         providers={providers}
         currentProvider={currentProvider}
@@ -33,27 +24,8 @@ export const ModelConfigPanel = () => {
           });
         }}
       />
-    </>
+    </div>
   );
 };
 
-export default function () {
-  return (
-    <>
-      <Sheet>
-        <SheetTrigger>
-          <div className=""> 
-            <GearSix size={IconSizeMiddle} className="text-green-600"/>
-          </div>
-        </SheetTrigger>
-        <SheetContent side={"top"}>
-          <SheetHeader>
-            <SheetTitle></SheetTitle>
-            <SheetDescription></SheetDescription>
-            <ModelConfigPanel />
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
-    </>
-  );
-}
+export default ModelConfigPanel

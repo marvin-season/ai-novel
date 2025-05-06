@@ -5,7 +5,7 @@ import { Loading } from "@/components/loading";
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
 
-const Recoder = lazy(() => import("@/pages/dashboard/recoder"))
+const Setting = lazy(() => import("@/pages/dashboard/setting"))
 
 
 const routes: RouteObject[] = [
@@ -23,10 +23,10 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: 'recoder',
+        path: 'setting',
         element: (
           <Suspense fallback={<Loading />}>
-            <Recoder />
+            <Setting />
           </Suspense>
         ),
       },

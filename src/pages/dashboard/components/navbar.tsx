@@ -1,8 +1,8 @@
 import { PencilLineIcon } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
-import ModelSetting from "@/components/setting";
+
 import { IconSizeMiddle } from '@/constants';
-import { ClockClockwise } from '@phosphor-icons/react';
+import { GearSix } from "@phosphor-icons/react";
 
 type Props = {}
 
@@ -12,10 +12,9 @@ export default function Navbar({ }: Props) {
             <NavLink to={"/"} className="navbar-brand">
                 <PencilLineIcon size={IconSizeMiddle} />
             </NavLink>
-            <NavLink to={"recoder"} className="navbar-brand">
-                <ClockClockwise size={IconSizeMiddle} />
+            <NavLink to={"setting"} className="navbar-brand">
+                <GearSix size={IconSizeMiddle} />
             </NavLink>
-            <ModelSetting />
         </nav>
     )
 }
