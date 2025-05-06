@@ -10,7 +10,7 @@ const ModelConfigPanel = () => {
     return config ? config : providers.find((provider) => provider.default) || providers[0];
   }, [config, providers]);
   return (
-    <div className="p-6">
+    <div className="p-10">
       <ModelSettings
         providers={providers}
         currentProvider={currentProvider}
