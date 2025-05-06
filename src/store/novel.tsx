@@ -21,6 +21,8 @@ interface NovelStore {
     novel: Partial<Novel> & Pick<Novel, "content" | "title" | "id">,
   ) => void;
   updateNovel: (id: string, content: string) => void;
+
+  deleteNovel: (id: string) => void;
   getCurrentNovel: () => Novel | undefined;
 }
 
@@ -53,6 +55,15 @@ export const useNovelStore = create<NovelStore>()(
             if (novel) {
               novel.content = content;
               novel.updateTime = Date.now();
+            }
+          });
+        },
+        deleteNovel(id){
+          set((state) => {
+            const index = state.novels.findIndex((novel) => novel.id === id);
+            if (index !== -1) {
+              state.novels.splice(index, 1);
+              state.novelId = ''
             }
           });
         },

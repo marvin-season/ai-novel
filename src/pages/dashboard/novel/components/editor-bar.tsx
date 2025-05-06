@@ -6,7 +6,7 @@ import { handleExport, handleImport } from "@/utils";
 import { TextButtons } from "@/components/advanced-rich-editor";
 import "tippy.js/animations/shift-away.css";
 import { Button } from "@/components/ui/button";
-import NovelSelect from "./novel-select";
+import NovelInfo from "./novel-select";
 export default function EditorBar() {
   const { editor } = useCurrentEditor();
 
@@ -16,7 +16,7 @@ export default function EditorBar() {
 
   return (
     <div className="px-2 bg-background flex gap-2 items-start justify-end border-b">
-      <NovelSelect />
+      <NovelInfo />
       <div className="flex">
         <TextButtons />
         <Button
