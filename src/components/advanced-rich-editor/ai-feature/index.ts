@@ -1,1 +1,1 @@
-export { default as GenerativeBubbleMenu } from './generative-bubble-menu'
+export { default as GenerativeBubbleMenu } from "./generative-bubble-menu";

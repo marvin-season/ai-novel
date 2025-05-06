@@ -56,8 +56,8 @@ const advancedOptions: AICommandsType[] = [
     value: AICommand.continue,
     label: "Continue",
     icon: StepForward,
-  }
-]
+  },
+];
 
 interface AISelectorCommandsProps {
   onSelect: (value: string, command: string) => void;

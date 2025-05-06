@@ -1,1 +1,1 @@
-export {default as useAdvancedExtentions} from "./useExtentions";
+export { default as useAdvancedExtentions } from "./useExtentions";

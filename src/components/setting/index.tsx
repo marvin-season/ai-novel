@@ -1,4 +1,3 @@
-
 import ModelSettings from "./model-settings";
 import { providers } from "@/constants/seed";
 import { useMemo } from "react";
@@ -28,4 +27,4 @@ const ModelConfigPanel = () => {
   );
 };
 
-export default ModelConfigPanel
+export default ModelConfigPanel;

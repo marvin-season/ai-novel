@@ -47,7 +47,7 @@ class MessageRegistry {
     const Renderer = this.getRenderer(message.role);
     if (!Renderer) return null;
 
-    return <Renderer key={message.id} message={message} index={index}/>;
+    return <Renderer key={message.id} message={message} index={index} />;
   }
 
   /**

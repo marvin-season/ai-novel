@@ -1,6 +1,6 @@
 import { IMessageStatus, MessageRole, useAgentStore } from "@/store/agent";
 import MessageList from "./message-list";
-import { Sender } from '@ant-design/x';
+import { Sender } from "@ant-design/x";
 import { generateId } from "@/utils";
 import completionFetch from "@/utils/completion-fetch";
 import { useCompletion } from "@ai-sdk/react";
@@ -14,7 +14,7 @@ interface Props {
 export default function ChatAssistant({ visible }: Props) {
   const replaceMessage = useAgentStore((state) => state.replaceMessage);
   const { messages, value, setValue } = useAgentStore();
-  const idRef = useRef('');
+  const idRef = useRef("");
   const { completion, complete, isLoading, setCompletion } = useCompletion({
     fetch: completionFetch,
     onResponse: (response) => {
@@ -42,16 +42,15 @@ export default function ChatAssistant({ visible }: Props) {
   }, [completion]);
   return (
     <>
-      <div className={`flex flex-col h-full w-[400px] box-border overflow-y-scroll shadow-md backdrop-blur-sm bg-[#fffe]`}>
+      <div
+        className={`flex flex-col h-full w-[400px] box-border overflow-y-scroll shadow-md backdrop-blur-sm bg-[#fffe]`}
+      >
         <MessageList />
-        <div
-          className="sticky bottom-4 bg-white px-4"
-        >
-
+        <div className="sticky bottom-4 bg-white px-4">
           <Sender
             value={value}
             onChange={(value) => {
-              setValue(value)
+              setValue(value);
             }}
             loading={isLoading}
             onSubmit={async () => {
@@ -64,26 +63,26 @@ export default function ChatAssistant({ visible }: Props) {
               });
               replaceMessage({
                 id: idRef.current,
-                content: 'a',
+                content: "a",
                 timestamp: Date.now(),
                 role: MessageRole.assistant,
                 status: IMessageStatus.loading,
               });
-              setValue('');
+              setValue("");
               await complete(value, {
                 body: {
                   command: AICommand.chat,
-                  context: messages
-                }
-              })
+                  context: messages,
+                },
+              });
             }}
             allowSpeech
           />
           <div className="flex justify-center text-xs text-gray-400 py-4">
-            {'回答由大模型生成，可能存在错误，请以实际为准。'}
+            {"回答由大模型生成，可能存在错误，请以实际为准。"}
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }

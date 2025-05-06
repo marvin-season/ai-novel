@@ -5,8 +5,7 @@ import { Loading } from "@/components/loading";
 
 const NovelPage = lazy(() => import("@/pages/dashboard/novel"));
 
-const Setting = lazy(() => import("@/pages/dashboard/setting"))
-
+const Setting = lazy(() => import("@/pages/dashboard/setting"));
 
 const routes: RouteObject[] = [
   {
@@ -23,7 +22,7 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: 'setting',
+        path: "setting",
         element: (
           <Suspense fallback={<Loading />}>
             <Setting />

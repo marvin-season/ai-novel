@@ -6,7 +6,7 @@ import { BaseMessageProps } from "@/types";
 /**
  * Props for the ToolMessage component
  */
-interface ToolMessageProps extends BaseMessageProps { }
+interface ToolMessageProps extends BaseMessageProps {}
 
 /**
  * Tool message UI component with streaming content

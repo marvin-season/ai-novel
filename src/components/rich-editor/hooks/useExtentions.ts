@@ -11,7 +11,7 @@ export default function useExtentions() {
         HTMLAttributes: {
           type: "tiptap-heading",
         },
-      }
+      },
     }),
     Badge,
     Markdown,
@@ -19,7 +19,7 @@ export default function useExtentions() {
     CodeBlockHighlight,
     Placeholder.configure({
       placeholder({ node }) {
-        if(node.type.name === "codeBlock") {
+        if (node.type.name === "codeBlock") {
           return "code here...";
         }
         return "妙笔生花";

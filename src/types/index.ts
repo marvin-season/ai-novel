@@ -1,4 +1,4 @@
-import { type ReactNode } from "react"
+import { type ReactNode } from "react";
 
 export enum AICommand {
   improve = "improve",
@@ -13,11 +13,10 @@ export enum AICommand {
 }
 
 export type AICommandsType = {
-  value: AICommand,
-  label: string,
-  icon: (p: any) => ReactNode
-}
-
+  value: AICommand;
+  label: string;
+  icon: (p: any) => ReactNode;
+};
 
 import { IMessageProps } from "@/store/agent";
 
@@ -27,7 +26,5 @@ export interface BaseMessageProps {
 
   groupId?: string;
 
-  index: number; // index of messages 
+  index: number; // index of messages
 }
-
-

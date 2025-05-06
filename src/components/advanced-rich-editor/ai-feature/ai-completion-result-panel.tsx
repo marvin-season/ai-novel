@@ -1,6 +1,5 @@
 import RichViewer from "@/components/rich-viewer";
 
-
 export default function AiCompleteResultPanel({
   content,
 }: {
@@ -12,4 +11,3 @@ export default function AiCompleteResultPanel({
     </div>
   );
 }
-

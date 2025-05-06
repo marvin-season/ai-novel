@@ -1,1 +1,1 @@
-export { default as useDocStore } from './doc'
+export { default as useDocStore } from "./doc";

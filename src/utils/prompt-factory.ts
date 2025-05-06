@@ -21,13 +21,13 @@ export const getPrompt = ({
   // 使用 switch 语句替换 ts-pattern
   switch (command) {
     case AICommand.chat:
-      const contextMessages = (context as CoreMessage[]).map(message => {
+      const contextMessages = (context as CoreMessage[]).map((message) => {
         return {
           role: message.role,
           content: message.content as string,
-        } as CoreMessage
-      })
-      messages.push(...contextMessages)
+        } as CoreMessage;
+      });
+      messages.push(...contextMessages);
       messages.push({
         role: "system",
         content: `你是一个AI对话手，请根据上面的历史对话记录来回复用户的提问`,
@@ -38,21 +38,22 @@ export const getPrompt = ({
       });
       break;
     case AICommand.explain:
-      messages.push({
-        role: 'system',
-        content: `You are an English expert! You need to explain English words entered by users in simpler English.`,
-      },
+      messages.push(
         {
-          role: 'system',
+          role: "system",
+          content: `You are an English expert! You need to explain English words entered by users in simpler English.`,
+        },
+        {
+          role: "system",
           content: `Your response should refer to the following format:
                 1.${prompt}
                 2.A simple explanation of ${prompt}
                 3. An example sentence of ${prompt}`,
         },
         {
-          role: 'user',
+          role: "user",
           content: `用户是输入的单词：${prompt}`,
-        }
+        },
       );
       break;
     case AICommand.continue:
@@ -138,5 +139,5 @@ export const getPrompt = ({
       break;
   }
 
-  return messages
+  return messages;
 };
