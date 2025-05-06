@@ -1,5 +1,5 @@
 import { messageRegistry } from "@/registry/messageRegistry";
-import { useAgentStore } from "@/store/agentStore";
+import { useAgentStore } from "@/store/agent";
 import { useMemo } from "react";
 
  const MessageList: React.FC = () => {

@@ -19,7 +19,7 @@ export type AICommandsType = {
 }
 
 
-import { IMessageProps } from "@/store/agentStore";
+import { IMessageProps } from "@/store/agent";
 
 export interface BaseMessageProps {
   /** Message data */

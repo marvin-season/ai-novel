@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { IMessageProps, MessageRole } from "@/store/agentStore";
+import { IMessageProps, MessageRole } from "@/store/agent";
 import {
   SystemMessage,
   UserMessage,

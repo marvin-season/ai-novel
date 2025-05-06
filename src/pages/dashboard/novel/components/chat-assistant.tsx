@@ -1,4 +1,4 @@
-import { IMessageStatus, MessageRole, useAgentStore } from "@/store/agentStore";
+import { IMessageStatus, MessageRole, useAgentStore } from "@/store/agent";
 import MessageList from "./message-list";
 import { Sender } from '@ant-design/x';
 import { generateId } from "@/utils";

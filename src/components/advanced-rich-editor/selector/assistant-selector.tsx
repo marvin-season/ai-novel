@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useAgentStore } from "@/store/agentStore";
+import { useAgentStore } from "@/store/agent";
 import { useCurrentEditor } from "@tiptap/react";
 import { Bot } from "lucide-react";
 

@@ -3,7 +3,7 @@ import { Bubble } from '@ant-design/x';
 import { BaseMessageProps } from "@/types";
 import { BotIcon, CornerDownLeft } from "lucide-react";
 import { IconSizeSmall } from "@/constants";
-import { IMessageStatus } from "@/store/agentStore";
+import { IMessageStatus } from "@/store/agent";
 import { useCurrentEditor } from "@tiptap/react";
 /**
  * Props for the UserMessage component
