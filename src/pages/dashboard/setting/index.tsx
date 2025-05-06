@@ -1,4 +1,4 @@
-import ModelSetting from "@/components/setting";
+import ModelSetting from "./components/model-config-panel";
 export default function Setting() {
   return (
     <div>
