@@ -2,11 +2,11 @@ import { IMessageStatus, MessageRole, useAgentStore } from "@/store/agent";
 import MessageList from "./message-list";
 import { Sender } from "@ant-design/x";
 import { generateId } from "@/utils";
-import completionFetch from "@/utils/completion-fetch";
 import { useCompletion } from "@ai-sdk/react";
 import { toast } from "sonner";
 import { AICommand } from "@/types";
 import { useEffect, useRef, useState } from "react";
+import useCompletionFetch from "@/utils/completion-fetch";
 
 interface Props {
   visible: boolean;
@@ -14,6 +14,7 @@ interface Props {
 export default function ChatAssistant({ visible }: Props) {
   const replaceMessage = useAgentStore((state) => state.replaceMessage);
   const { messages, value, setValue } = useAgentStore();
+  const { completionFetch } = useCompletionFetch()
   const idRef = useRef("");
   const { completion, complete, isLoading, setCompletion } = useCompletion({
     fetch: completionFetch,

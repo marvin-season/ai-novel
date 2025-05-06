@@ -12,7 +12,7 @@ import AICompletionCommands from "./ai-completion-command";
 import AISelectorCommands from "./ai-selector-commands";
 import { useCompletion } from "ai/react";
 import AiCompleteResultPanel from "@/components/advanced-rich-editor/ai-feature/ai-completion-result-panel";
-import completionFetch from "@/utils/completion-fetch";
+import useCompletionFetch from "@/utils/completion-fetch";
 
 interface AISelectorProps {
   open: boolean;
@@ -25,7 +25,7 @@ export function AISelector({ onOpenChange }: AISelectorProps) {
     return;
   }
   const [inputValue, setInputValue] = useState("");
-
+  const { completionFetch } = useCompletionFetch()
   const { completion, complete, isLoading, setCompletion } = useCompletion({
     fetch: completionFetch,
     onResponse: (response) => {

@@ -15,7 +15,7 @@ import { Magic } from "@/components/ui/icon";
 import { CrazySpinner } from "@/components/ui/icon";
 import AiCompleteResultPanel from "./ai-completion-result-panel";
 import AICompletionCommands from "@/components/advanced-rich-editor/ai-feature/ai-completion-command";
-import completionFetch from "@/utils/completion-fetch";
+import useCompletionFetch from "@/utils/completion-fetch";
 export default function GenerativeFloatingMenu({
   children,
 }: {
@@ -23,7 +23,7 @@ export default function GenerativeFloatingMenu({
 }) {
   const { editor } = useCurrentEditor();
   const instanceRef = useRef<Instance<Props> | null>(null);
-
+  const { completionFetch } = useCompletionFetch()
   const { completion, complete, setCompletion, isLoading } = useCompletion({
     streamProtocol: "data",
     fetch: completionFetch,
