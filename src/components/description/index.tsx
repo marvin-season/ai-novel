@@ -1,3 +1,5 @@
+import { memo } from "react"
+
 const textSizeMap = {
     xs: 'text-xs',
     sm: 'text-sm',
@@ -6,7 +8,7 @@ const textSizeMap = {
     xl: 'text-xl',
 }
 
-export default function Description({ content = '', size = 'xs' }: {
+function Description({ content = '', size = 'xs' }: {
     content: string,
     size?: keyof typeof textSizeMap
 }) {
@@ -21,3 +23,5 @@ export default function Description({ content = '', size = 'xs' }: {
         <span className={`${textSize} text-gray-500`}>{content}</span>
     )
 }
+
+export default memo(Description)
