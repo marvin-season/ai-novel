@@ -5,7 +5,7 @@ import { devtools } from "zustand/middleware";
 import { NovelStore } from "./novel";
 import { AgentState } from "./agent";
 
-interface ConversationProps {
+export interface ConversationProps {
   id: string;
   title: string;
 
@@ -23,6 +23,7 @@ export interface AssistantStoreProps {
   updateConversation: (id: string, conversation: Partial<ConversationProps>) => void;
   deleteConversation: (id: string) => void;
   getConversation: (id: string) => ConversationProps | undefined;
+  appendMessages: (conversationId: string, messages: AgentState['messages']) => void;
 }
 
 const useAssistantStore = create<AssistantStoreProps>()(
@@ -67,7 +68,17 @@ const useAssistantStore = create<AssistantStoreProps>()(
               }
             }
           })
-        }
+        },
+        appendMessages(conversationId, messages) {
+          set((state) => {
+            const c = state.conversations.find(
+              (conversation) => conversation.id === conversationId,
+            );
+            if (c) {
+              c.messages.push(...messages)
+            }
+          })
+        },
       })),
       {
         name: "conversationStorage",

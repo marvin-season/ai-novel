@@ -7,13 +7,17 @@ import { toast } from "sonner";
 import { AICommand } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import useCompletionFetch from "@/utils/completion-fetch";
+import useAssistantStore from "@/store/assistant";
+import { useNovelStore } from "@/store/novel";
 
 interface Props {
   visible: boolean;
 }
 export default function ChatAssistant({ visible }: Props) {
   const replaceMessage = useAgentStore((state) => state.replaceMessage);
-  const { messages, value, setValue } = useAgentStore();
+  const { messages, value, setValue, initializeMessages } = useAgentStore();
+  const { novelId, conversationId } = useNovelStore()
+  const { getConversation, appendMessages } = useAssistantStore()
   const { completionFetch } = useCompletionFetch()
   const idRef = useRef("");
   const { completion, complete, isLoading, setCompletion } = useCompletion({
@@ -27,6 +31,10 @@ export default function ChatAssistant({ visible }: Props) {
     onError: (e) => {
       toast.error(e.message);
     },
+    onFinish(a) {
+      debugger
+      conversationId && messages.length > 0 && appendMessages(conversationId, messages)
+    }
   });
 
   useEffect(() => {
@@ -41,6 +49,13 @@ export default function ChatAssistant({ visible }: Props) {
       setCompletion("");
     }
   }, [completion]);
+
+  // init message from assistant store
+  useEffect(() => {
+    const conversation = getConversation(conversationId!)
+    conversation && initializeMessages(conversation.messages);
+  }, [novelId]);
+
   return (
     <>
       <div
@@ -56,12 +71,16 @@ export default function ChatAssistant({ visible }: Props) {
             loading={isLoading}
             onSubmit={async () => {
               idRef.current = generateId();
-              replaceMessage({
+              const userMessage = {
                 id: generateId(),
                 content: value,
                 timestamp: Date.now(),
                 role: MessageRole.user,
-              });
+              }
+              replaceMessage(userMessage); // update chat templ message
+
+              conversationId && appendMessages(conversationId, [userMessage]) // update db message
+
               replaceMessage({
                 id: idRef.current,
                 content: "a",

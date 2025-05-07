@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { devtools } from "zustand/middleware";
 import { persist } from "zustand/middleware";
+import { ConversationProps } from "./assistant";
 
 export type Novel = {
   content: string;
@@ -14,6 +15,8 @@ export type Novel = {
 export interface NovelStore {
   novelId?: string;
   setNovelId: (val: string) => void;
+  conversationId?: ConversationProps['id']; // novel只绑定一个 conversation
+  setConversationId: (val: string) => void;
   ebableAutoSave: boolean;
   setEbableAutoSave: (val: boolean) => void;
 
@@ -42,6 +45,11 @@ export const useNovelStore = create<NovelStore>()(
           },
         ],
         ebableAutoSave: true,
+        setConversationId(id) {
+          set((state) => {
+            state.conversationId = id;
+          });
+        },
         setEbableAutoSave(val) {
           set((state) => {
             state.ebableAutoSave = val;

@@ -13,13 +13,13 @@ import useAssistantStore from "@/store/assistant";
 
 export default function NovelCreator() {
   const [title, setTitle] = useState("");
-  const { setNovelId, createNovel, novels } = useNovelStore();
+  const { setNovelId, createNovel, novels, setConversationId } = useNovelStore();
   const navigate = useNavigate();
   const { editor } = useCurrentEditor();
   const { config } = useModelStore();
   const createConversation = useAssistantStore(state => state.createConversation)
 
-  if(!config) {
+  if (!config) {
     return <GoSetting />
   }
 
@@ -49,10 +49,12 @@ export default function NovelCreator() {
               title: title.endsWith(".md") ? title : title + ".md",
             });
             setNovelId(id);
+            const conversationId = generateId()
             createConversation({
-              id: generateId(),
+              id: conversationId,
               novelId: id,
             })
+            setConversationId(conversationId)
             toast.success(`创建成功`);
           }}
         >
