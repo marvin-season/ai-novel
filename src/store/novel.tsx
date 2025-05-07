@@ -9,10 +9,9 @@ export type Novel = {
   id: string;
   createTime?: number;
   updateTime?: number;
-  assistantId?: string; // 关联到 chat
 };
 
-interface NovelStore {
+export interface NovelStore {
   novelId?: string;
   setNovelId: (val: string) => void;
   ebableAutoSave: boolean;
