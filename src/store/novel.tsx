@@ -15,6 +15,8 @@ export type Novel = {
 interface NovelStore {
   novelId?: string;
   setNovelId: (val: string) => void;
+  ebableAutoSave: boolean;
+  setEbableAutoSave: (val: boolean) => void;
 
   novels: Novel[];
   createNovel: (
@@ -40,6 +42,12 @@ export const useNovelStore = create<NovelStore>()(
             createTime: Date.now(),
           },
         ],
+        ebableAutoSave: true,
+        setEbableAutoSave(val) {
+          set((state) => {
+            state.ebableAutoSave = val;
+          });
+        },
         getCurrentNovel() {
           return get().novels.find((item) => item.id === get().novelId);
         },
@@ -52,7 +60,7 @@ export const useNovelStore = create<NovelStore>()(
         updateNovel(id, content) {
           set((state) => {
             const novel = state.novels.find((novel) => novel.id === id);
-            if (novel) {
+            if (novel && content != novel.content) {
               novel.content = content;
               novel.updateTime = Date.now();
             }

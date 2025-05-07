@@ -3,13 +3,18 @@ import { CHAR_LIMIT, IconSizeXS } from "@/constants";
 import { useNovelStore } from "@/store/novel";
 import { useCurrentEditor } from "@tiptap/react";
 import { Trash2 } from "lucide-react";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { toast } from "sonner";
 import NovelSave from "./novel-save";
 
 
 export default function NovelOperator() {
     const { editor } = useCurrentEditor();
+    const getCurrentNovel = useNovelStore(state => state.getCurrentNovel)
+    const updateTime = useMemo(() => {
+        const time = getCurrentNovel()?.updateTime || Date.now();
+        return '上次修改时间 ' + new Date(time).toLocaleString()
+    }, [getCurrentNovel])
     return (
         <div className="py-2 pl-4 flex gap-6 items-center border-t">
             <div className="flex items-center gap-4">
@@ -20,6 +25,7 @@ export default function NovelOperator() {
             <div className="flex items-center gap-2">
                 <Description content={'count: ' + editor!.storage.characterCount.characters() + `/ ${CHAR_LIMIT}`} />
                 <Description content={'words: ' + editor!.storage.characterCount.words()} />
+                <Description content={updateTime} />
             </div>
         </div >
     )
