@@ -1,12 +1,15 @@
+import { useToast } from "@/hooks/use-toast";
 import { isMobileDevice } from "@/utils";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useEffect } from "react";
 
 export default function MobileDetector({ children }: { children: React.ReactNode }) {
-
+    const { toast } = useToast();
     useEffect(() => {
         if (isMobileDevice(navigator.userAgent)) {
-            toast.warning("请在 PC 端打开本页面, 当前页面暂不适配移动设备浏览")
+            toast({
+                title: "提示",
+                description: "本站点不支持移动端访问，请使用电脑访问",
+            })
         }
 
     }, []);

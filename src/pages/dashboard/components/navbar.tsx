@@ -8,7 +8,7 @@ type Props = {};
 
 export default function Navbar({}: Props) {
   return (
-    <nav className="navbar flex flex-col gap-6 items-center p-3 border-r">
+    <nav className="navbar flex flex-col gap-6 items-center p-4 border-r">
       <NavLink to={"/"} className="navbar-brand">
         <PencilLineIcon size={IconSizeMiddle} />
       </NavLink>

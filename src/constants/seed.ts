@@ -13,7 +13,7 @@ export const providers = [
       },
       model: {
         label: "model",
-        type: "string",
+        type: "select",
         default: "qwen2:7b",
         value: "qwen2:7b",
         placeholder: "请输入模型名称",
