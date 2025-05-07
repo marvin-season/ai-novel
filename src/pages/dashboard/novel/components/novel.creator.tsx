@@ -9,6 +9,7 @@ import NovelCard from "./novel-card";
 import { useNavigate } from "react-router-dom";
 import GoSetting from "./go-setting";
 import { useModelStore } from "@/store/model";
+import useAssistantStore from "@/store/assistant";
 
 export default function NovelCreator() {
   const [title, setTitle] = useState("");
@@ -16,6 +17,7 @@ export default function NovelCreator() {
   const navigate = useNavigate();
   const { editor } = useCurrentEditor();
   const { config } = useModelStore();
+  const createConversation = useAssistantStore(state => state.createConversation)
 
   if(!config) {
     return <GoSetting />
@@ -47,6 +49,10 @@ export default function NovelCreator() {
               title: title.endsWith(".md") ? title : title + ".md",
             });
             setNovelId(id);
+            createConversation({
+              id: generateId(),
+              novelId: id,
+            })
             toast.success(`创建成功`);
           }}
         >

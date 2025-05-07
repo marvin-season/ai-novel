@@ -10,7 +10,7 @@ interface ConversationProps {
   title: string;
 
   novelId: NovelStore["novelId"]; // associate to novel
-  agent: AgentState;
+  messages: AgentState['messages'];
   createTime: number;
   updateTime: number;
 
@@ -19,7 +19,7 @@ interface ConversationProps {
 export interface AssistantStoreProps {
   conversations: ConversationProps[]
   // crud
-  createConversation: (conversation: Partial<ConversationProps> & Pick<ConversationProps, 'agent' | 'novelId' | 'id'>) => void;
+  createConversation: (conversation: Partial<ConversationProps> & Pick<ConversationProps, 'novelId' | 'id'>) => void;
   updateConversation: (id: string, conversation: Partial<ConversationProps>) => void;
   deleteConversation: (id: string) => void;
   getConversation: (id: string) => ConversationProps | undefined;
@@ -38,6 +38,7 @@ const useAssistantStore = create<AssistantStoreProps>()(
               updateTime: Date.now(),
               createTime: Date.now(),
               title: conversation.title || "Untitled",
+              messages: [],
             });
           });
         },
