@@ -7,6 +7,7 @@ import { useAdvancedExtentions } from "@/components/advanced-rich-editor";
 import EditorBar from "@/pages/dashboard/novel/components/editor-bar";
 import NovelBubbleMenu from "./novel-bubble-menu";
 import ChatAssistantLoader from "./chat-assistant-loader";
+import NovelOperator from "./novel-operator";
 export default function NovelEditor({
   content,
   children,
@@ -30,6 +31,7 @@ export default function NovelEditor({
       >
         {children}
         <NovelBubbleMenu />
+        <NovelOperator/>
       </RichEditorProvider>
     </>
   );
