@@ -60,7 +60,9 @@
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
     "tiptap-markdown": "^0.8.10",
-    "zustand": "^5.0.3"
+    "zustand": "^5.0.3",
+    "@sentry/react": "^9.2.0",
+    "@sentry/vite-plugin": "^3.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
