@@ -18,6 +18,7 @@ export const providers = [
         value: "qwen2:7b",
         placeholder: "请输入模型名称",
         options: [
+          { name: "qwen3:0.6b", value: "qwen3:0.6b" },
           { name: "qwen2:7b", value: "qwen2:7b" },
           { name: "llama3.1", value: "llama3.1" },
           { name: "deepseek-r1", value: "deepseek-r1" },

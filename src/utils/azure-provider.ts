@@ -1,19 +1,18 @@
 import { createAzure } from "@ai-sdk/azure";
 
-export function initAzureProvider({
-  open_model_pref,
-  azure_openai_key,
-  azure_openai_endpoint,
-}: {
+export function initAzureProvider(config: {
   open_model_pref?: string;
   azure_openai_key?: string;
   azure_openai_endpoint?: string;
 }) {
-  const model = process.env.VITE_OPEN_MODEL_PREF || open_model_pref;
-  const apiKey = process.env.VITE_AZURE_OPENAI_KEY || azure_openai_key;
-  const baseURL =
-    `${process.env.VITE_AZURE_OPENAI_ENDPOINT}/openai/deployments/` ||
-    `${azure_openai_endpoint}/openai/deployments/`;
+  const {
+    open_model_pref = import.meta.env.VITE_OPEN_MODEL_PREF,
+    azure_openai_key = import.meta.env.VITE_AZURE_OPENAI_KEY,
+    azure_openai_endpoint = import.meta.env.VITE_AZURE_OPENAI_ENDPOINT,
+  } = config;
+  const model = open_model_pref;
+  const apiKey = azure_openai_key;
+  const baseURL = `${azure_openai_endpoint}/openai/deployments/`;
   if (!model) {
     throw new Error("Model is not defined");
   }
