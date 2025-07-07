@@ -6,7 +6,7 @@ export function initOllamaProvider(props: {
 }) {
   const {
     model = import.meta.env.VITE_OLLAMA_ENDPOINT,
-    base_url = import.meta.env.VITE_OLLAME_LLM_MODEL + "/api",
+    base_url = import.meta.env.VITE_OLLAME_LLM_MODEL,
   } = props;
   if (!model) {
     throw new Error("Model is not defined");
@@ -15,6 +15,6 @@ export function initOllamaProvider(props: {
     throw new Error("Endpoint is not defined");
   }
   return createOllama({
-    baseURL: base_url,
+    baseURL: `${base_url}/api`,
   })(model);
 }
