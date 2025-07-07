@@ -2,7 +2,6 @@ import { IconSizeMiddle } from "@/constants";
 import { CaretCircleDoubleLeft } from "@phosphor-icons/react";
 import { useState } from "react";
 import ChatAssistant from "./chat-assistant";
-import { Separator } from "@/components/ui/separator";
 
 export default function ChatAssistantLoader() {
   const [visible, setVisible] = useState(true);
